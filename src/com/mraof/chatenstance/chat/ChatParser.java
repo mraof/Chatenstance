@@ -12,6 +12,7 @@ public class ChatParser
 	public ChatParser()
 	{
 		addHandler(new LightningStrike());
+		addHandler(new MobHate());
 	}
 	@SubscribeEvent
 	public void onChatMessage(ServerChatEvent event)

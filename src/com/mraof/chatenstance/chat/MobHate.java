@@ -22,16 +22,17 @@ public class MobHate extends ChatHandler
 	{
 		boolean hate = false;
 		String message = event.message;
+		Entity entity = null;
 		while(!message.isEmpty()) 
 		{
 			int wordEnd = message.indexOf(' ') != -1 ? message.indexOf(' ') : message.length() - 1;
 			String word = message.substring(0, wordEnd);
 			if(word.equalsIgnoreCase("HATE"))
 				hate = true;
-			if (entities.containsKey(word.toLowerCase()) && hate)
+			if (entities.containsKey(word.toLowerCase()))
+			{
 				try {
-					event.player.worldObj.spawnEntityInWorld(entities.get(
-							word.toLowerCase()).getConstructor(net.minecraft.world.World.class).newInstance(event.player.worldObj));
+					entity = entities.get(word.toLowerCase()).getConstructor(net.minecraft.world.World.class).newInstance(event.player.worldObj);
 				} catch (SecurityException e) {
 					e.printStackTrace();
 				} catch (InstantiationException e) {
@@ -45,6 +46,13 @@ public class MobHate extends ChatHandler
 				} catch (NoSuchMethodException e) {
 					e.printStackTrace();
 				}
+			}	
+			message = message.substring(wordEnd + 1);	
+		}
+		if(entity != null && hate)
+		{
+			entity.setPosition(event.player.posX, event.player.posY, event.player.posZ);
+			event.player.worldObj.spawnEntityInWorld(entity);
 		}
 	}
 }
