@@ -9,6 +9,10 @@ import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 public class ChatParser
 {
 	ArrayList<ChatHandler> handlers = new ArrayList<ChatHandler>();
+	public ChatParser()
+	{
+		addHandler(new LightningStrike());
+	}
 	@SubscribeEvent
 	public void onChatMessage(ServerChatEvent event)
 	{

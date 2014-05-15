@@ -13,6 +13,6 @@
 		"dependencies": [
 			"Forge"
 			], 
-		"description": "Adds Homestuck in your Minecraft!"
+		"description": "Makes things happen based on theh chat"
 }
 ]
