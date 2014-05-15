@@ -14,8 +14,14 @@ public class MobHate extends ChatHandler
 
 	static
 	{
+		entities.put("creeper", net.minecraft.entity.monster.EntityCreeper.class);
+		entities.put("creepers", net.minecraft.entity.monster.EntityCreeper.class);
+		entities.put("skeleton", net.minecraft.entity.monster.EntitySkeleton.class);
+		entities.put("skeletons", net.minecraft.entity.monster.EntitySkeleton.class);
 		entities.put("spider", net.minecraft.entity.monster.EntitySpider.class);
 		entities.put("spiders", net.minecraft.entity.monster.EntitySpider.class);
+		entities.put("zombie", net.minecraft.entity.monster.EntityZombie.class);
+		entities.put("zombies", net.minecraft.entity.monster.EntityZombie.class);
 	};
 	@Override
 	public void handleMessage(ServerChatEvent event)
