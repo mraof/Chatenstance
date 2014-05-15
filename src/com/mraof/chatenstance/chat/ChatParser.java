@@ -12,6 +12,7 @@ public class ChatParser
 	@SubscribeEvent
 	public void onChatMessage(ServerChatEvent event)
 	{
+		System.out.println("ServerChatEvent recieved");
 		for(ChatHandler handler : handlers)
 			handler.handleMessage(event);
 	}
