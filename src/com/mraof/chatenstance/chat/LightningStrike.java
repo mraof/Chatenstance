@@ -18,7 +18,7 @@ public class LightningStrike extends ChatHandler
 		}
 		if(matches > 1)
 		{
-			event.player.worldObj.addWeatherEffect(new EntityLightningBolt(event.player.worldObj, event.player.posX, 255, event.player.posZ));
+			event.player.worldObj.addWeatherEffect(new EntityLightningBolt(event.player.worldObj, event.player.posX, event.player.worldObj.getPrecipitationHeight((int) event.player.posX, (int) event.player.posZ), event.player.posZ));
 			System.out.println("Lightning strike added");
 		}
 			
