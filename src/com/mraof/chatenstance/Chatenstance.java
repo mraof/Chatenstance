@@ -11,10 +11,12 @@ import cpw.mods.fml.common.event.FMLInitializationEvent;
 @Mod(modid = "Chatenstance", name = "Chatenstance", version = "@VERSION@")
 public class Chatenstance
 {
+	ChatParser chatParser;
 	@EventHandler
 	public void load(FMLInitializationEvent event)
 	{
 		System.out.println("Chatenstance loaded");
-		MinecraftForge.EVENT_BUS.register(new ChatParser());
+		chatParser = new ChatParser();
+		MinecraftForge.EVENT_BUS.register(chatParser);
 	}
 }
