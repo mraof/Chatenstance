@@ -1,0 +1,18 @@
+[
+{
+	"name": "Chatenstance", 
+		"parent": "", 
+		"credits": "Mraof", 
+		"version": "${version}", 
+		"modid": "Chatenstance", 
+		"authors": [
+			"Mraof", 
+		], 
+		"mcversion": "${mcversion}", 
+		"screenshots": [], 
+		"dependencies": [
+			"Forge"
+			], 
+		"description": "Adds Homestuck in your Minecraft!"
+}
+]
