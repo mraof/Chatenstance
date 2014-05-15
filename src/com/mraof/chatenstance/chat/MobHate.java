@@ -18,7 +18,10 @@ public class MobHate extends ChatHandler
 	@Override
 	public void handleMessage(ServerChatEvent event)
 	{
-		String[] words = event.message.split(" ");
 		boolean hate = false;
+		String message = event.message;
+		for(; message.indexOf(' ') != -1; message = message.substring)
+		{
+			if(message.toUpperCase().startsWith("HATE")
 	}
 }
