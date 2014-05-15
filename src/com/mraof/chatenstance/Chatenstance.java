@@ -15,7 +15,6 @@ public class Chatenstance
 	@EventHandler
 	public void load(FMLInitializationEvent event)
 	{
-		System.out.println("Chatenstance loaded");
 		chatParser = new ChatParser();
 		MinecraftForge.EVENT_BUS.register(chatParser);
 	}
