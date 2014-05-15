@@ -22,17 +22,29 @@ public class MobHate extends ChatHandler
 		entities.put("spiders", net.minecraft.entity.monster.EntitySpider.class);
 		entities.put("zombie", net.minecraft.entity.monster.EntityZombie.class);
 		entities.put("zombies", net.minecraft.entity.monster.EntityZombie.class);
+		entities.put("enderman", net.minecraft.entity.monster.EntityEnderman.class);
+		entities.put("endermen", net.minecraft.entity.monster.EntityEnderman.class);
+		entities.put("silverfish", net.minecraft.entity.monster.EntitySilverfish.class);
+		entities.put("slime", net.minecraft.entity.monster.EntitySlime.class);
+		entities.put("slimes", net.minecraft.entity.monster.EntitySlime.class);
+		entities.put("blaze", net.minecraft.entity.monster.EntityBlaze.class);
+		entities.put("blazes", net.minecraft.entity.monster.EntityBlaze.class);
+		entities.put("ghast", net.minecraft.entity.monster.EntityGhast.class);
+		entities.put("ghasts", net.minecraft.entity.monster.EntityGhast.class);
+		entities.put("pig", net.minecraft.entity.passive.EntityPig.class);
+		entities.put("pigs", net.minecraft.entity.passive.EntityPig.class);
 	};
 	@Override
 	public void handleMessage(ServerChatEvent event)
 	{
 		boolean hate = false;
-		String message = event.message;
+		String message = event.message + " ";
 		Entity entity = null;
 		while(!message.isEmpty()) 
 		{
 			int wordEnd = message.indexOf(' ') != -1 ? message.indexOf(' ') : message.length() - 1;
 			String word = message.substring(0, wordEnd);
+			System.out.println("\"" + word + "\"");
 			if(word.equalsIgnoreCase("HATE"))
 				hate = true;
 			if (entities.containsKey(word.toLowerCase()))
