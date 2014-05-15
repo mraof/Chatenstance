@@ -1,5 +1,6 @@
 package com.mraof.chatenstance.chat;
 
+import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.entity.effect.EntityLightningBolt;
 import net.minecraftforge.event.ServerChatEvent;
 
@@ -18,7 +19,9 @@ public class LightningStrike extends ChatHandler
 		}
 		if(matches > 1)
 		{
-			event.player.worldObj.addWeatherEffect(new EntityLightningBolt(event.player.worldObj, event.player.posX, event.player.worldObj.getPrecipitationHeight((int) event.player.posX, (int) event.player.posZ), event.player.posZ));
+			EntityLightningBolt bolt = new EntityLightningBolt(event.player.worldObj, event.player.posX, event.player.worldObj.getPrecipitationHeight((int) event.player.posX, (int) event.player.posZ), event.player.posZ);
+			event.player.worldObj.addWeatherEffect(bolt);
+			RenderManager.instance.renderEntitySimple(bolt, 1);
 		}
 			
 	}
