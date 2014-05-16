@@ -38,8 +38,8 @@ public class ChunkProviderChatland implements IChunkProvider
 			{
 				for(y = 0; y < 2; y++)
 					chunkBlocks[x * 4096 | z * 256 | y] = Blocks.bedrock;
-				for(;y < 20; y++)
-					chunkBlocks[x * 4096 | z * 256 | y] = Blocks.wool;
+				for(;y < 20 + (16 - Math.abs(8 - x ) - Math.abs(8 - z)) / 2; y++)
+					chunkBlocks[x * 4096 | z * 256 | y] = Blocks.sandstone;
 			}
 		Chunk chunk = new Chunk(this.world, chunkBlocks, chunkMetadata, chunkX, chunkZ);
 		return chunk;
