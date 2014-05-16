@@ -1,6 +1,7 @@
 package com.mraof.chatenstance.world.gen.room;
 
 import net.minecraft.block.Block;
+import net.minecraft.init.Blocks;
 
 public class Room
 {
@@ -14,10 +15,10 @@ public class Room
 		for(int i = 0; i < 2; i++)
 			for(int y = 20; y < 24; y++)
 			{
-				setBlockToAir(7 + i, y, 0);
-				setBlockToAir(7 + i, y, 15);
-				setBlockToAir(0, y, 7 + i);
-				setBlockToAir(15, y, 7 + i);
+				setBlock(7 + i, y, 0, Blocks.air);
+				setBlock(7 + i, y, 15, Blocks.air);
+				setBlock(0, y, 7 + i, Blocks.air);
+				setBlock(15, y, 7 + i, Blocks.air);
 			}
 	}
 	public static Room getRoomFromId(int id, Block[] blocks)
@@ -33,7 +34,7 @@ public class Room
 			return new Room(blocks);
 		}
 	}
-	public setBlock(int x, int y, int z, Block block)
+	public void setBlock(int x, int y, int z, Block block)
 	{
 		chunkBlocks[x * 4096 | z * 256 | y] = block;
 	}
