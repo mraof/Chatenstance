@@ -9,8 +9,6 @@ public class MagicWords extends ChatHandler
 {
 	public HashMap<String, Integer> effectWords = new HashMap<String, Integer>();
 
-		
-
 	@Override
 	public void handleMessage(ServerChatEvent event) 
 	{
