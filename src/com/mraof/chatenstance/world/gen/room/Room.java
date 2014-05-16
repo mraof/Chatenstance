@@ -1,16 +1,21 @@
 package com.mraof.chatenstance.world.gen.room;
 
-import net.minecraft.world.chunk.IChunkProvider;
+import net.minecraft.world.World;
 
 public class Room
 {
-	public Room()
+	public void generate(World world, int chunkX, int chunkY)
 	{
 	}
-
-	public void generate(IChunkProvider provider, int chunkX, int chunkY)
+	public static Room getRoomFromId(int id)
 	{
-		provider.canSave()
+		switch(id)
+		{
+		case 0:
+			return new RoomEmpty();
+		default:
+			return new Room();
+		}
 	}
 }
 
