@@ -14,17 +14,18 @@ public class MagicWords extends ChatHandler
 	static
 	{
 		effectWords.put("vroom", 1);
+		effectWords.put("hurry", 2);
+		effectWords.put("light", 3);
+		effectWords.put("heavy", 4);
+		effectWords.put("mighty", 5);
+		effectWords.put("boing", 8);
+		effectWords.put("asdf", 9);
+		effectWords.put("curo", 10);
 	}
 
 	@Override
 	public void handleMessage(ServerChatEvent event) 
 	{
-		String[] words = event.message.split(" ");
-		HashSet<String> matches = new HashSet<String>();
-		for(String word : words)
-			if(effectWords.containsKey(word.toLowerCase()))
-				matches.add(word.toLowerCase());
-		for(String match : matches)
-		event.player.addPotionEffect(new PotionEffect(effectWords.get(match), 180, 0, false));
+		event.player.addPotionEffect(new PotionEffect(effectWords.get(event.message.toLowerCase()), 180, 0, false));
 	}
 }
