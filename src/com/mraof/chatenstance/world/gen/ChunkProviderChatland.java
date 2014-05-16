@@ -31,11 +31,16 @@ public class ChunkProviderChatland implements IChunkProvider
 	@Override
 	public Chunk provideChunk(int chunkX, int chunkZ) {
 		Block[] chunkBlocks = new Block[65536];
-		byte[] chunkMetadata = new byte[65536];
+		byte[] chunkMetadata = new byte[65536]; //It will only generate every other row without this for some bizarre reason
+		int y = 0;
 		for(int x = 0; x < 16; x++)
 			for(int z = 0; z < 16; z++)
-				for(int y = 0; y < 16; y++)
-				chunkBlocks[x * 4096 | z * 256 | y] = Blocks.bedrock;
+			{
+				for(y = 0; y < 2; y++)
+					chunkBlocks[x * 4096 | z * 256 | y] = Blocks.bedrock;
+				for(;y < 20; y++)
+					chunkBlocks[x * 4096 | z * 256 | y] = Blocks.wool;
+			}
 		Chunk chunk = new Chunk(this.world, chunkBlocks, chunkMetadata, chunkX, chunkZ);
 		return chunk;
 	}
