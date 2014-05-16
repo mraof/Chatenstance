@@ -1,15 +1,18 @@
 package com.mraof.chatenstance;
 
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraftforge.common.DimensionManager;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.config.Configuration;
 
 import com.mraof.chatenstance.block.ChatBox;
 import com.mraof.chatenstance.chat.ChatParser;
+import com.mraof.chatenstance.chat.DimensionWords;
 import com.mraof.chatenstance.chat.LightningStrike;
 import com.mraof.chatenstance.chat.MagicWords;
 import com.mraof.chatenstance.chat.MobHate;
 import com.mraof.chatenstance.chat.PlantTalk;
+import com.mraof.chatenstance.world.WorldProviderChatland;
 
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
@@ -21,6 +24,7 @@ import cpw.mods.fml.common.registry.GameRegistry;
 public class Chatenstance
 {
 	public static ChatParser chatParser;
+	public int chatDimensionId = 0;
 	@EventHandler 
 	public void preInit(FMLPreInitializationEvent event)
 	{
@@ -82,6 +86,15 @@ public class Chatenstance
 			magicWords.effectWords.put(config.get("MagicWords", "Absorption", "yellow hearts").getString().toLowerCase(), 22);
 			chatParser.addHandler(magicWords);
 		}
+		if(config.get("Parts", "DimensionWords", true).getBoolean(true))
+		{
+			DimensionWords dimensionWords = new DimensionWords();
+			chatDimensionId = config.get("DimensionWords", "ChatlandId", 23).getInt();
+			dimensionWords.teleportPhrase = config.get("DimensionWords", "teleportPhrase", "I want to go to that place").getString();
+			dimensionWords.returnPhrase = config.get("DimensionWords", "returnPhrase", "I want to go home").getString();
+			chatParser.addHandler(dimensionWords);
+		}
+
 		config.save();
 		GameRegistry.registerBlock(new ChatBox(), "chatBox").setCreativeTab(CreativeTabs.tabDecorations);
 			
@@ -90,5 +103,7 @@ public class Chatenstance
 	public void load(FMLInitializationEvent event)
 	{
 		MinecraftForge.EVENT_BUS.register(chatParser);
+		DimensionManager.registerProviderType(23, WorldProviderChatland.class, true);
+		DimensionManager.registerDimension(23, 23);
 	}
 }
