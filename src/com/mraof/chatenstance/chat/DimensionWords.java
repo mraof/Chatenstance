@@ -32,6 +32,7 @@ public class DimensionWords extends ChatHandler
 
 	public void teleport(EntityPlayerMP player, int dimension)
 	{
+		System.out.println("Teleporting player from " +  player.dimension + " to " + dimension);
 		int currentDimension = player.dimension;
 		WorldServer currentWorldServer = player.mcServer.worldServerForDimension(currentDimension);
 		player.dimension = dimension;
@@ -48,9 +49,11 @@ public class DimensionWords extends ChatHandler
 		destinationWorldServer.updateEntityWithOptionalForce(player, false);
 		player.setWorld(destinationWorldServer);
 
+		WorldServer worldserver2 = player.getServerForPlayer();
 		currentWorldServer.getPlayerManager().removePlayer(player);
-		destinationWorldServer.getPlayerManager().addPlayer(player);
-		destinationWorldServer.theChunkProviderServer.loadChunk((int) player.posX >> 4, (int) player.posZ >> 4);
+		worldserver2.getPlayerManager().addPlayer(player);
+		worldserver2.theChunkProviderServer.loadChunk((int) player.posX >> 4, (int) player.posZ >> 4);
+
 		player.playerNetServerHandler.setPlayerLocation(player.posX, destinationY, player.posZ, player.rotationYaw, player.rotationPitch);
 		player.theItemInWorldManager.setWorld(destinationWorldServer);
 		player.mcServer.getConfigurationManager().updateTimeAndWeatherForPlayer(player, destinationWorldServer);
