@@ -1,8 +1,10 @@
 package com.mraof.chatenstance;
 
+import net.minecraft.creativetab.CreativeTabs;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.config.Configuration;
 
+import com.mraof.chatenstance.block.ChatBox;
 import com.mraof.chatenstance.chat.ChatParser;
 import com.mraof.chatenstance.chat.LightningStrike;
 import com.mraof.chatenstance.chat.MagicWords;
@@ -13,11 +15,12 @@ import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+import cpw.mods.fml.common.registry.GameRegistry;
 
 @Mod(modid = "Chatenstance", name = "Chatenstance", version = "@VERSION@")
 public class Chatenstance
 {
-	ChatParser chatParser;
+	public static ChatParser chatParser;
 	@EventHandler 
 	public void preInit(FMLPreInitializationEvent event)
 	{
@@ -80,6 +83,7 @@ public class Chatenstance
 			chatParser.addHandler(magicWords);
 		}
 		config.save();
+		GameRegistry.registerBlock(new ChatBox(), "chatBox").setCreativeTab(CreativeTabs.tabDecorations);
 			
 	}
 	@EventHandler

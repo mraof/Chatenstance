@@ -1,10 +1,16 @@
 package com.mraof.chatenstance.tileentity;
 
-import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.server.MinecraftServer;
+import net.minecraft.server.management.ItemInWorldManager;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.ChatComponentTranslation;
+import net.minecraft.world.WorldServer;
+import net.minecraftforge.event.ServerChatEvent;
+
+import com.mojang.authlib.GameProfile;
+import com.mraof.chatenstance.Chatenstance;
 
 public class TileEntityChatBox extends TileEntity
 {
@@ -29,6 +35,7 @@ public class TileEntityChatBox extends TileEntity
 	@Override
 	public void updateEntity()
 	{
-		EntityPlayerMP player = new EntityPlayerMP(MinecraftServer.getS);
+		EntityPlayerMP player = new EntityPlayerMP(MinecraftServer.getServer(), (WorldServer) this.worldObj, new GameProfile(null, "ChatBox"), (ItemInWorldManager) null);
+		Chatenstance.chatParser.onChatMessage(new ServerChatEvent(player, message, (ChatComponentTranslation) null));
 	}
 }	
