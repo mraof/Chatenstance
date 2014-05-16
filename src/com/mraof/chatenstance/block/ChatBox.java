@@ -49,5 +49,11 @@ public class ChatBox extends Block
 	{
 		return new TileEntityChatBox();
 	}
+
+	@Override
+	public TileEntity createNewTileEntity(World world, int metadata)
+	{
+		createTileEntity(world, metadata);
+	}
 }
 

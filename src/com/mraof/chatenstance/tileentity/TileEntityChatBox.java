@@ -1,5 +1,6 @@
 package com.mraof.chatenstance.tileentity;
 
+import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.server.MinecraftServer;
@@ -12,11 +13,12 @@ import net.minecraftforge.event.ServerChatEvent;
 import com.mojang.authlib.GameProfile;
 import com.mraof.chatenstance.Chatenstance;
 
-public class TileEntityChatBox extends TileEntity
+public class TileEntityChatBox extends TileEntity implements ITileEntityProvider
 {
 	public String message;
 	public TileEntityChatBox()
 	{
+		System.out.println("TE loaded");
 		message = "strike strike strike strike strike strike strike strike strike strike strike strike strike strike strike strike hate pig";
 	}
 	
@@ -36,6 +38,8 @@ public class TileEntityChatBox extends TileEntity
 	public void updateEntity()
 	{
 		EntityPlayerMP player = new EntityPlayerMP(MinecraftServer.getServer(), (WorldServer) this.worldObj, new GameProfile(null, "ChatBox"), (ItemInWorldManager) null);
+		System.out.println("Chatbox updated");
+		player.setPosition(this.xCoord, this.yCoord, this.zCoord);
 		Chatenstance.chatParser.onChatMessage(new ServerChatEvent(player, message, (ChatComponentTranslation) null));
 	}
 }	
