@@ -21,6 +21,18 @@ public class MagicWords extends ChatHandler
 		effectWords.put("boing", 8);
 		effectWords.put("asdf", 9);
 		effectWords.put("curo", 10);
+		effectWords.put("my flesh is like steel", 11);
+		effectWords.put("i cannot burn", 12);
+		effectWords.put("i'm a fish", 13);
+		effectWords.put("I am invisible", 14);
+		effectWords.put("ow, my eyes", 15);
+		effectWords.put("i see all", 16);
+		effectWords.put("i'm full", 17);
+		effectWords.put("i am too weak", 18);
+		effectWords.put("ow, a spider bite", 19);
+		effectWords.put("i have a plague", 20);
+		effectWords.put("i am too healthy", 21);
+		effectWords.put("yellow hearts", 22);
 	}
 
 	@Override
