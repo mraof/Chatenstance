@@ -4,6 +4,7 @@ import net.minecraftforge.common.MinecraftForge;
 
 import com.mraof.chatenstance.chat.ChatParser;
 import com.mraof.chatenstance.chat.LightningStrike;
+import com.mraof.chatenstance.chat.MagicWords;
 import com.mraof.chatenstance.chat.MobHate;
 import com.mraof.chatenstance.chat.PlantTalk;
 
@@ -23,5 +24,6 @@ public class Chatenstance
 		chatParser.addHandler(new LightningStrike());
 		chatParser.addHandler(new MobHate());
 		chatParser.addHandler(new PlantTalk());
+		chatParser.addHandler(new MagicWords());
 	}
 }
