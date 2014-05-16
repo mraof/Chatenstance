@@ -1,5 +1,7 @@
 package com.mraof.chatenstance.tileentity;
 
+import java.util.Random;
+
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 
@@ -9,6 +11,7 @@ public class TileEntityChatBox extends TileEntity
 {
 	public String message;
 	public int ticker = 0;
+	public Random rand = new Random();
 	public TileEntityChatBox()
 	{
 		message = "strike strike strike strike strike strike strike strike strike strike strike strike strike strike strike strike hate pig";
@@ -29,11 +32,11 @@ public class TileEntityChatBox extends TileEntity
 	@Override
 	public void updateEntity()
 	{
-		ticker++;
-		if(ticker > 60)
+		ticker--;
+		if(ticker < 0)
 		{
 			Chatenstance.chatParser.onChatMessage(message, this.xCoord, this.yCoord, this.zCoord, this.worldObj);
-			ticker = 0;
+			ticker = rand.nextInt(120);
 		}
 	}
 }	

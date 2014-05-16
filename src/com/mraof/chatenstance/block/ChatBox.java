@@ -31,12 +31,12 @@ public class ChatBox extends Block implements ITileEntityProvider
 	{
 		return -1;
 	}
-
+*/
 	@Override
 	public boolean isOpaqueCube()
 	{
 		return false;
-	}*/
+	}
 
 	@Override
 	@SideOnly(Side.CLIENT)
