@@ -1,34 +1,41 @@
 package com.mraof.chatenstance.world.gen.room;
 
-import net.minecraft.world.World;
+import net.minecraft.block.Block;
 
 public class Room
 {
-	public void generate(World world, int chunkX, int chunkZ)
+	public Block[] chunkBlocks;
+	public Room(Block[] blocks)
 	{
-		int xOffset = chunkX * 16;
-		int zOffset = chunkZ * 16;
+		this.chunkBlocks = blocks;
+	}
+	public void generate()
+	{
 		for(int i = 0; i < 2; i++)
 			for(int y = 20; y < 24; y++)
 			{
-				world.setBlockToAir(xOffset + 7 + i, y, zOffset);
-				world.setBlockToAir(xOffset + 7 + i, y, zOffset + 15);
-				world.setBlockToAir(xOffset, y, zOffset + 7 + i);
-				world.setBlockToAir(xOffset + 15, y, zOffset + 7 + i);
+				setBlockToAir(7 + i, y, 0);
+				setBlockToAir(7 + i, y, 15);
+				setBlockToAir(0, y, 7 + i);
+				setBlockToAir(15, y, 7 + i);
 			}
 	}
-	public static Room getRoomFromId(int id)
+	public static Room getRoomFromId(int id, Block[] blocks)
 	{
 		switch(id)
 		{
 		default:
 		case 0:
-			return new RoomEmpty();
+			return new RoomEmpty(blocks);
 		case 1:
-			return new RoomGrassy();
+			return new RoomGrassy(blocks);
 		case 2:
-			return new Room();
+			return new Room(blocks);
 		}
+	}
+	public setBlock(int x, int y, int z, Block block)
+	{
+		chunkBlocks[x * 4096 | z * 256 | y] = block;
 	}
 }
 

@@ -1,18 +1,21 @@
 package com.mraof.chatenstance.world.gen.room;
 
-import net.minecraft.world.World;
+import net.minecraft.block.Block;
+import net.minecraft.init.Blocks;
 
 public class RoomEmpty extends Room
 {
+	public RoomEmpty(Block[] blocks) {
+		super(blocks);
+	}
+
 	@Override
-	public void generate(World world, int chunkX, int chunkZ)
+	public void generate()
 	{
-		super.generate(world, chunkX, chunkZ);
-		for(int x = chunkX * 16 + 1; x < chunkX * 16 + 15; x++)
-		{
-			for(int z = chunkZ * 16 + 1; z < chunkZ * 16 + 15; z++)
+		super.generate();
+		for(int x = 1; x < 15; x++)
+			for(int z = 1; z < 15; z++)
 				for(int y = 20; y < 34; y++)
-					world.setBlockToAir(x, y, z);
-		}
+					setBlock(x, y, z, Blocks.air);
 	}
 }

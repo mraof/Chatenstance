@@ -43,6 +43,7 @@ public class ChunkProviderChatland implements IChunkProvider
 				for(;y < 64 + (16 - Math.abs(8 - x ) - Math.abs(8 - z)) / 2 + (chunkX * chunkZ) % 27; y++)
 					chunkBlocks[x * 4096 | z * 256 | y] = Blocks.sandstone;
 			}
+		chunkBlocks = Room.getRoomFromId(0, chunkBlocks).generate();
 		Chunk chunk = new Chunk(this.world, chunkBlocks, chunkMetadata, chunkX, chunkZ);
 		return chunk;
 	}
@@ -55,7 +56,6 @@ public class ChunkProviderChatland implements IChunkProvider
 	@Override
 	public void populate(IChunkProvider var1, int chunkX, int chunkZ)
 	{
-		Room.getRoomFromId(0).generate(world, chunkX, chunkZ);
 	}
 
 	@Override
