@@ -18,5 +18,6 @@ public class MagicWords extends ChatHandler
 		for(String word : words)
 			if(effectWords.containsKey(word))
 				matches.add(word);
+		event.player.addPotionEffect(new net.minecraft.potion.PotionHealth
 	}
 }
