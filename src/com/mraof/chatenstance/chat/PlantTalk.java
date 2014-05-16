@@ -21,7 +21,7 @@ public class PlantTalk extends ChatHandler
 		for(int z = (int) event.player.posZ - 4; z < event.player.posZ + 4; z++)
 		{
 			Block block;
-			if((block = event.player.worldObj.getBlock(x, y, z)) instanceof IGrowable && lowercase > 0)
+			if((block = event.player.worldObj.getBlock(x, y, z)) instanceof IGrowable && lowercase > rand.nextInt(event.message.length()))
 				((IGrowable) block).func_149853_b(event.player.worldObj, rand, x, y, z);
 		}
 
