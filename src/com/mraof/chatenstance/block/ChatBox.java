@@ -42,7 +42,7 @@ public class ChatBox extends Block implements ITileEntityProvider
 	@SideOnly(Side.CLIENT)
 	public void registerBlockIcons(IIconRegister iconRegister)
 	{
-		iconRegister.registerIcon("chatenstance:chatbox");
+		this.blockIcon = iconRegister.registerIcon("chatenstance:chatbox");
 	}
 
 	@Override
