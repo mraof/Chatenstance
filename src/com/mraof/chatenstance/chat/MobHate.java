@@ -45,7 +45,7 @@ public class MobHate extends ChatHandler
 			}	
 			message = message.substring(wordEnd + 1);	
 		}
-		if(entity != null && hate && rand.nextDouble() < .05)
+		if(entity != null && hate && rand.nextDouble() < .1)
 		{
 			entity.setPosition(event.player.posX + rand.nextInt(33) - 16, event.player.posY, event.player.posZ + rand.nextInt(33) - 16);
 			event.player.worldObj.spawnEntityInWorld(entity);
