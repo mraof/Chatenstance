@@ -19,7 +19,8 @@ public class LightningStrike extends ChatHandler
 			if(word.equalsIgnoreCase("lightning") || word.equalsIgnoreCase("lightening") || word.equalsIgnoreCase("strike"))
 				matches++;
 		}
-		if(.05 * matches / words.length > rand.nextDouble())
+		for(int i = 0; i < words.length; i++)
+		if(.1 * matches / words.length > rand.nextDouble())
 		{
 			double x = event.player.posX + rand.nextInt(17) - 8;
 			double z = event.player.posZ + rand.nextInt(17) - 8;
