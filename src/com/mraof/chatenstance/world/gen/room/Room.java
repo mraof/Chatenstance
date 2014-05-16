@@ -11,9 +11,12 @@ public class Room
 	{
 		switch(id)
 		{
+		default:
 		case 0:
 			return new RoomEmpty();
-		default:
+		case 1:
+			return new RoomGrassy();
+		case 2:
 			return new Room();
 		}
 	}
