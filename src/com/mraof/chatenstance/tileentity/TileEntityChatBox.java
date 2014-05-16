@@ -1,6 +1,5 @@
 package com.mraof.chatenstance.tileentity;
 
-import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.server.MinecraftServer;
@@ -13,7 +12,7 @@ import net.minecraftforge.event.ServerChatEvent;
 import com.mojang.authlib.GameProfile;
 import com.mraof.chatenstance.Chatenstance;
 
-public class TileEntityChatBox extends TileEntity implements ITileEntityProvider
+public class TileEntityChatBox extends TileEntity
 {
 	public String message;
 	public TileEntityChatBox()

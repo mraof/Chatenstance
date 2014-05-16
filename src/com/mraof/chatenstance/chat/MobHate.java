@@ -5,7 +5,6 @@ import java.util.HashMap;
 import java.util.Random;
 
 import net.minecraft.entity.Entity;
-import net.minecraftforge.event.ServerChatEvent;
 
 public class MobHate extends ChatHandler
 {
@@ -13,7 +12,7 @@ public class MobHate extends ChatHandler
 	public HashMap<String, Class<? extends Entity>> entities = new HashMap<String, Class<? extends Entity>>();
 
 	@Override
-	public void handleMessage(ServerChatEvent event)
+	public void handleMessage(ChatMessage event)
 	{
 		boolean hate = false;
 		String message = event.message + " ";
@@ -28,7 +27,7 @@ public class MobHate extends ChatHandler
 			if (entities.containsKey(word.toLowerCase()))
 			{
 				try {
-					entity = entities.get(word.toLowerCase()).getConstructor(net.minecraft.world.World.class).newInstance(event.player.worldObj);
+					entity = entities.get(word.toLowerCase()).getConstructor(net.minecraft.world.World.class).newInstance(event.world);
 				} catch (SecurityException e) {
 					e.printStackTrace();
 				} catch (InstantiationException e) {
@@ -47,8 +46,8 @@ public class MobHate extends ChatHandler
 		}
 		if(entity != null && hate && rand.nextDouble() < .1)
 		{
-			entity.setPosition(event.player.posX + rand.nextInt(33) - 16, event.player.posY, event.player.posZ + rand.nextInt(33) - 16);
-			event.player.worldObj.spawnEntityInWorld(entity);
+			entity.setPosition(event.x + rand.nextInt(33) - 16, event.y, event.z + rand.nextInt(33) - 16);
+			event.world.spawnEntityInWorld(entity);
 		}
 	}
 }

@@ -13,8 +13,15 @@ public class ChatParser
 	public void onChatMessage(ServerChatEvent event)
 	{
 		System.out.println("ServerChatEvent recieved");
+		ChatMessage chatMessage = new ChatMessage(event);
 		for(ChatHandler handler : handlers)
-			handler.handleMessage(event);
+			handler.handleMessage(chatMessage);
+	}
+	public void onChatMessage(String message, double x, double y, double z, World world)
+	{
+		ChatMessage chatMessage = new ChatMessage(message, x, y, z, world);
+		for(ChatHandler handler : handlers)
+			handler.handleMessage(chatMessage);
 	}
 	public void addHandler(ChatHandler handler)
 	{

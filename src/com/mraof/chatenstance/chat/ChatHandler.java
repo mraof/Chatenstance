@@ -4,6 +4,6 @@ import net.minecraftforge.event.ServerChatEvent;
 
 public abstract class ChatHandler
 {
-	public abstract void handleMessage(ServerChatEvent event);
+	public abstract void handleMessage(ChatMessage chatMessage);
 }
 

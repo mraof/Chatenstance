@@ -1,6 +1,7 @@
 package com.mraof.chatenstance.block;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.tileentity.TileEntity;
@@ -11,7 +12,7 @@ import com.mraof.chatenstance.tileentity.TileEntityChatBox;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class ChatBox extends Block
+public class ChatBox extends Block implements ITileEntityProvider
 {
 	public ChatBox()
 	{
@@ -53,7 +54,7 @@ public class ChatBox extends Block
 	@Override
 	public TileEntity createNewTileEntity(World world, int metadata)
 	{
-		createTileEntity(world, metadata);
+		return createTileEntity(world, metadata);
 	}
 }
 

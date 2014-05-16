@@ -3,14 +3,13 @@ package com.mraof.chatenstance.chat;
 import java.util.Random;
 
 import net.minecraft.entity.effect.EntityLightningBolt;
-import net.minecraftforge.event.ServerChatEvent;
 
 public class LightningStrike extends ChatHandler
 {
 	Random rand = new Random();
 
 	@Override
-	public void handleMessage(ServerChatEvent event) 
+	public void handleMessage(ChatMessage event) 
 	{
 		String[] words = event.message.split(" ");
 		int matches = 0;
