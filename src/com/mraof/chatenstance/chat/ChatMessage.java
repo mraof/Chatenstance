@@ -15,15 +15,17 @@ public class ChatMessage
 
 	public ChatMessage(ServerChatEvent event)
 	{
-		player = event.player;
 		message = event.message;
+		player = event.player;
+		world = player.worldObj;
 		x = player.posX;
 		y = player.posY;
 		z = player.posZ;
-		world = player.worldObj;
 	}
 	public ChatMessage(String message, double x, double y, double z, World world)
 	{
+		this.message = message;
+		this.world = world;
 		this.x = x;
 		this.y = y;
 		this.z = z;

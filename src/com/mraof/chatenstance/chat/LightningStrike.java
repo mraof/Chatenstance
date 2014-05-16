@@ -21,10 +21,10 @@ public class LightningStrike extends ChatHandler
 		for(int i = 0; i < words.length; i++)
 		if(.05 * matches / words.length > rand.nextDouble())
 		{
-			double x = event.player.posX + rand.nextInt(17) - 8;
-			double z = event.player.posZ + rand.nextInt(17) - 8;
-			EntityLightningBolt bolt = new EntityLightningBolt(event.player.worldObj, x, event.player.worldObj.getPrecipitationHeight((int) x, (int) z), z);
-			event.player.worldObj.addWeatherEffect(bolt);
+			double x = event.x + rand.nextInt(17) - 8;
+			double z = event.z + rand.nextInt(17) - 8;
+			EntityLightningBolt bolt = new EntityLightningBolt(event.world, x, event.world.getPrecipitationHeight((int) x, (int) z), z);
+			event.world.addWeatherEffect(bolt);
 
 		}
 

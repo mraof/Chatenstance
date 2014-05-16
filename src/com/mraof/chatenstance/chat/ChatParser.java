@@ -2,6 +2,7 @@ package com.mraof.chatenstance.chat;
 
 import java.util.ArrayList;
 
+import net.minecraft.world.World;
 import net.minecraftforge.event.ServerChatEvent;
 
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
@@ -12,7 +13,6 @@ public class ChatParser
 	@SubscribeEvent
 	public void onChatMessage(ServerChatEvent event)
 	{
-		System.out.println("ServerChatEvent recieved");
 		ChatMessage chatMessage = new ChatMessage(event);
 		for(ChatHandler handler : handlers)
 			handler.handleMessage(chatMessage);
