@@ -3,7 +3,9 @@ package com.mraof.chatenstance.world.gen;
 import java.util.List;
 import java.util.Random;
 
+import net.minecraft.block.Block;
 import net.minecraft.entity.EnumCreatureType;
+import net.minecraft.init.Blocks;
 import net.minecraft.util.IProgressUpdate;
 import net.minecraft.world.ChunkPosition;
 import net.minecraft.world.World;
@@ -28,75 +30,67 @@ public class ChunkProviderChatland implements IChunkProvider
 
 	@Override
 	public Chunk provideChunk(int chunkX, int chunkZ) {
-		Chunk chunk = new Chunk();
-		return null;
+		Block[] chunkBlocks = new Block[65536];
+		for(int x = 0; x < 16; x++)
+			for(int z = 0; z < 16; z++)
+				chunkBlocks[x * 4096 | z * 256 | 0] = Blocks.bedrock;
+		Chunk chunk = new Chunk(this.world, chunkBlocks, chunkX, chunkZ);
+		return chunk;
 	}
 
 	@Override
 	public Chunk loadChunk(int chunkX, int chunkZ) {
-		// TODO Auto-generated method stub
 		return this.provideChunk(chunkX, chunkZ);
 	}
 
 	@Override
 	public void populate(IChunkProvider var1, int var2, int var3) {
-		// TODO Auto-generated method stub
 
 	}
 
 	@Override
 	public boolean saveChunks(boolean var1, IProgressUpdate var2) {
-		// TODO Auto-generated method stub
-		return false;
+		return true;
 	}
 
 	@Override
 	public boolean unloadQueuedChunks() {
-		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
 	public boolean canSave() {
-		// TODO Auto-generated method stub
-		return false;
+		return true;
 	}
 
 	@Override
 	public String makeString() {
-		// TODO Auto-generated method stub
-		return null;
+		return "Chatland";
 	}
 
+	@SuppressWarnings("rawtypes")
 	@Override
 	public List getPossibleCreatures(EnumCreatureType var1, int var2, int var3,
 			int var4) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public ChunkPosition func_147416_a(World var1, String var2, int var3,
 			int var4, int var5) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public int getLoadedChunkCount() {
-		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	@Override
 	public void recreateStructures(int var1, int var2) {
-		// TODO Auto-generated method stub
-
 	}
 
 	@Override
 	public void saveExtraData() {
-		// TODO Auto-generated method stub
-
 	}
 }
