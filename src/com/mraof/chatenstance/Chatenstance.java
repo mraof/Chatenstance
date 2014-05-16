@@ -25,6 +25,7 @@ public class Chatenstance
 {
 	public static ChatParser chatParser;
 	public int chatDimensionId = 0;
+	private int chatProviderId;
 	@EventHandler 
 	public void preInit(FMLPreInitializationEvent event)
 	{
@@ -90,6 +91,7 @@ public class Chatenstance
 		{
 			DimensionWords dimensionWords = new DimensionWords();
 			chatDimensionId = config.get("DimensionWords", "ChatlandId", 23).getInt();
+			chatProviderId = config.get("DimensionWords", "ChatlandProviderId", 23).getInt();
 			dimensionWords.teleportPhrase = config.get("DimensionWords", "teleportPhrase", "I want to go to that place").getString();
 			dimensionWords.returnPhrase = config.get("DimensionWords", "returnPhrase", "I want to go home").getString();
 			chatParser.addHandler(dimensionWords);
@@ -97,13 +99,16 @@ public class Chatenstance
 
 		config.save();
 		GameRegistry.registerBlock(new ChatBox(), "chatBox").setCreativeTab(CreativeTabs.tabDecorations);
-			
+
 	}
 	@EventHandler
 	public void load(FMLInitializationEvent event)
 	{
 		MinecraftForge.EVENT_BUS.register(chatParser);
-		DimensionManager.registerProviderType(23, WorldProviderChatland.class, true);
-		DimensionManager.registerDimension(23, 23);
+		if(chatDimensionId != 0)
+		{
+			DimensionManager.registerProviderType(chatProviderId, WorldProviderChatland.class, true);
+			DimensionManager.registerDimension(chatDimensionId, chatProviderId);
+		}
 	}
 }

@@ -1,6 +1,8 @@
 package com.mraof.chatenstance.chat;
 
 import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.network.play.server.S07PacketRespawn;
+import net.minecraft.world.WorldServer;
 
 public class DimensionWords extends ChatHandler
 {
@@ -26,6 +28,10 @@ public class DimensionWords extends ChatHandler
 
 	public void teleport(EntityPlayerMP player, int dimension)
 	{
-		
+		int currentDimension = player.dimension;
+		WorldServer currentWorldServer = player.mcServer.worldServerForDimension(currentDimension);
+		player.dimension = dimension;
+		WorldServer destinationWorldServer = player.mcServer.worldServerForDimension(dimension);
+		S07PacketRespawn respawnPacket = new S07PacketRespawn(player.dimension, player.worldObj.difficultySetting, destionationW
 	}
 }
