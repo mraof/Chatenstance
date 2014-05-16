@@ -17,8 +17,8 @@ public class RoomGrassy extends Room
 		{
 			for(int z = 1; z < 15; z++)
 			{
-				setBlock(x, 20, z, Blocks.grass);
-				for(int y = 21; y < 34; y++)
+				setBlock(x, 19, z, Blocks.grass);
+				for(int y = 20; y < 34; y++)
 					setBlock(x, y, z, Blocks.air);
 			}
 		}

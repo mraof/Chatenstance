@@ -11,6 +11,7 @@ import net.minecraft.world.ChunkPosition;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.chunk.IChunkProvider;
+import net.minecraft.world.gen.NoiseGeneratorOctaves;
 
 import com.mraof.chatenstance.world.gen.room.Room;
 
@@ -18,11 +19,14 @@ public class ChunkProviderChatland implements IChunkProvider
 {
 	Random rand;
 	World world;
+	NoiseGeneratorOctaves noiseGen0;
 
 	public ChunkProviderChatland(World world, long seed)
 	{
 		this.world = world;
 		rand = new Random(seed);
+		noiseGen0 = new NoiseGeneratorOctaves(rand, 4);
+
 	}
 
 	@Override
@@ -43,7 +47,9 @@ public class ChunkProviderChatland implements IChunkProvider
 				for(;y < 64 + (16 - Math.abs(8 - x ) - Math.abs(8 - z)) / 2 + (chunkX * chunkZ) % 27; y++)
 					chunkBlocks[x * 4096 | z * 256 | y] = Blocks.sandstone;
 			}
-		Room room = Room.getRoomFromId(0, chunkBlocks);
+		double[] id = new double[1];
+		noiseGen0.generateNoiseOctaves(id, chunkX, chunkZ, 1, 1, 1.0D, 1.0D, 1.0D);
+		Room room = Room.getRoomFromId((int) id[0], chunkBlocks);
 		room.generate();
 		Chunk chunk = new Chunk(this.world, chunkBlocks, chunkMetadata, chunkX, chunkZ);
 		return chunk;
