@@ -31,10 +31,12 @@ public class ChunkProviderChatland implements IChunkProvider
 	@Override
 	public Chunk provideChunk(int chunkX, int chunkZ) {
 		Block[] chunkBlocks = new Block[65536];
+		byte[] chunkMetadata = new byte[65536];
 		for(int x = 0; x < 16; x++)
 			for(int z = 0; z < 16; z++)
-				chunkBlocks[x * 4096 | z * 256 | 1] = Blocks.bedrock;
-		Chunk chunk = new Chunk(this.world, chunkBlocks, chunkX, chunkZ);
+				for(int y = 0; y < 16; y++)
+				chunkBlocks[x * 4096 | z * 256 | y] = Blocks.bedrock;
+		Chunk chunk = new Chunk(this.world, chunkBlocks, chunkMetadata, chunkX, chunkZ);
 		return chunk;
 	}
 
