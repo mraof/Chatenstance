@@ -91,6 +91,7 @@ public class Chatenstance
 		{
 			DimensionWords dimensionWords = new DimensionWords();
 			chatDimensionId = config.get("DimensionWords", "ChatlandId", 23).getInt();
+			dimensionWords.dimension = chatDimensionId;
 			chatProviderId = config.get("DimensionWords", "ChatlandProviderId", 23).getInt();
 			dimensionWords.teleportPhrase = config.get("DimensionWords", "teleportPhrase", "I want to go to that place").getString();
 			dimensionWords.returnPhrase = config.get("DimensionWords", "returnPhrase", "I want to go home").getString();

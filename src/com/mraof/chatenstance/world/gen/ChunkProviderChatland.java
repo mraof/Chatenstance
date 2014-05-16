@@ -33,7 +33,7 @@ public class ChunkProviderChatland implements IChunkProvider
 		Block[] chunkBlocks = new Block[65536];
 		for(int x = 0; x < 16; x++)
 			for(int z = 0; z < 16; z++)
-				chunkBlocks[x * 4096 | z * 256 | 0] = Blocks.bedrock;
+				chunkBlocks[x * 4096 | z * 256 | 1] = Blocks.bedrock;
 		Chunk chunk = new Chunk(this.world, chunkBlocks, chunkX, chunkZ);
 		return chunk;
 	}
