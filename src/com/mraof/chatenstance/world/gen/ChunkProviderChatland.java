@@ -12,6 +12,8 @@ import net.minecraft.world.World;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.chunk.IChunkProvider;
 
+import com.mraof.chatenstance.world.gen.room.Room;
+
 public class ChunkProviderChatland implements IChunkProvider
 {
 	Random rand;
@@ -51,8 +53,9 @@ public class ChunkProviderChatland implements IChunkProvider
 	}
 
 	@Override
-	public void populate(IChunkProvider var1, int var2, int var3) {
-
+	public void populate(IChunkProvider var1, int chunkX, int chunkZ)
+	{
+		Room.getRoomFromId(0).generate(world, chunkX, chunkZ);
 	}
 
 	@Override

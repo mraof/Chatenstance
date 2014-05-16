@@ -1,8 +1,9 @@
 package com.mraof.chatenstance.world.gen.room;
 
+import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 
-public class RoomEmpty extends Room
+public class RoomGrassy extends Room
 {
 	@Override
 	public void generate(World world, int chunkX, int chunkZ)
@@ -11,8 +12,11 @@ public class RoomEmpty extends Room
 		for(int x = chunkX * 16 + 1; x < chunkX * 16 + 15; x++)
 		{
 			for(int z = chunkZ * 16 + 1; z < chunkZ * 16 + 15; z++)
-				for(int y = 20; y < 34; y++)
+			{
+				world.setBlock(x, 20, z, Blocks.grass);
+				for(int y = 21; y < 34; y++)
 					world.setBlockToAir(x, y, z);
+			}
 		}
 	}
 }
