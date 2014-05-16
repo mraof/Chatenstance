@@ -20,7 +20,7 @@ public class ChatBox extends Block implements ITileEntityProvider
 		setHardness(1.0F);
 	}
 
-	@Override
+/*	@Override
 	public boolean renderAsNormalBlock()
 	{
 		return false;
@@ -36,7 +36,7 @@ public class ChatBox extends Block implements ITileEntityProvider
 	public boolean isOpaqueCube()
 	{
 		return false;
-	}
+	}*/
 
 	@Override
 	@SideOnly(Side.CLIENT)

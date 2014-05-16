@@ -21,7 +21,6 @@ public class MobHate extends ChatHandler
 		{
 			int wordEnd = message.indexOf(' ') != -1 ? message.indexOf(' ') : message.length() - 1;
 			String word = message.substring(0, wordEnd);
-			System.out.println("\"" + word + "\"");
 			if(word.equalsIgnoreCase("HATE"))
 				hate = true;
 			if (entities.containsKey(word.toLowerCase()))
