@@ -10,30 +10,8 @@ import net.minecraftforge.event.ServerChatEvent;
 public class MobHate extends ChatHandler
 {
 	Random rand = new Random();
-	static HashMap<String, Class<? extends Entity>> entities = new HashMap<String, Class<? extends Entity>>();
+	public HashMap<String, Class<? extends Entity>> entities = new HashMap<String, Class<? extends Entity>>();
 
-	static
-	{
-		entities.put("creeper", net.minecraft.entity.monster.EntityCreeper.class);
-		entities.put("creepers", net.minecraft.entity.monster.EntityCreeper.class);
-		entities.put("skeleton", net.minecraft.entity.monster.EntitySkeleton.class);
-		entities.put("skeletons", net.minecraft.entity.monster.EntitySkeleton.class);
-		entities.put("spider", net.minecraft.entity.monster.EntitySpider.class);
-		entities.put("spiders", net.minecraft.entity.monster.EntitySpider.class);
-		entities.put("zombie", net.minecraft.entity.monster.EntityZombie.class);
-		entities.put("zombies", net.minecraft.entity.monster.EntityZombie.class);
-		entities.put("enderman", net.minecraft.entity.monster.EntityEnderman.class);
-		entities.put("endermen", net.minecraft.entity.monster.EntityEnderman.class);
-		entities.put("silverfish", net.minecraft.entity.monster.EntitySilverfish.class);
-		entities.put("slime", net.minecraft.entity.monster.EntitySlime.class);
-		entities.put("slimes", net.minecraft.entity.monster.EntitySlime.class);
-		entities.put("blaze", net.minecraft.entity.monster.EntityBlaze.class);
-		entities.put("blazes", net.minecraft.entity.monster.EntityBlaze.class);
-		entities.put("ghast", net.minecraft.entity.monster.EntityGhast.class);
-		entities.put("ghasts", net.minecraft.entity.monster.EntityGhast.class);
-		entities.put("pig", net.minecraft.entity.passive.EntityPig.class);
-		entities.put("pigs", net.minecraft.entity.passive.EntityPig.class);
-	};
 	@Override
 	public void handleMessage(ServerChatEvent event)
 	{
