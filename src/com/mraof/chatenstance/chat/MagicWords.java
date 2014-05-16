@@ -12,6 +12,7 @@ public class MagicWords extends ChatHandler
 	@Override
 	public void handleMessage(ServerChatEvent event) 
 	{
-		event.player.addPotionEffect(new PotionEffect(effectWords.get(event.message.toLowerCase()), 180, 0, false));
+		if(effectWords.containsKey(event.message.toLowerCase()))
+			event.player.addPotionEffect(new PotionEffect(effectWords.get(event.message.toLowerCase()), 180, 0, false));
 	}
 }
