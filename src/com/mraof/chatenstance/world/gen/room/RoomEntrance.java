@@ -23,16 +23,17 @@ public class RoomEntrance extends Room {
 		int y = 20;
 		for(; chunkBlocks[4096 * 8 | 256 * 8 | y] != null; y++)
 		{
-			setBlockWithMetadata(8, y, 8, Blocks.ladder, (byte) 3);
+			setBlockWithMetadata(8, y, 8, Blocks.ladder, (byte) 4);
 			setBlock(9, y, 8, Blocks.sandstone);
 		}
-		setBlock(8, y, 8, Blocks.glowstone);
+		y--;
+		setBlock(7, y, 7, Blocks.glowstone);
+		setBlock(8, y, 7, Blocks.glowstone);
+		setBlock(9, y, 7, Blocks.glowstone);
+		setBlock(7, y, 8, Blocks.glowstone);
 		setBlock(9, y, 8, Blocks.glowstone);
-		setBlock(10, y, 8, Blocks.glowstone);
+		setBlock(7, y, 9, Blocks.glowstone);
 		setBlock(8, y, 9, Blocks.glowstone);
-		setBlock(10, y, 9, Blocks.glowstone);
-		setBlock(8, y, 10, Blocks.glowstone);
-		setBlock(9, y, 10, Blocks.glowstone);
-		setBlock(10, y, 10, Blocks.glowstone);
+		setBlock(9, y, 9, Blocks.glowstone);
 	}
 }
