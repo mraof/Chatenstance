@@ -19,7 +19,7 @@ public class RoomEntrance extends RoomEmptyBig {
 		int y = 20;
 		for(; chunkBlocks[4096 * 8 | 256 * 8 | y] != null; y++)
 		{
-			setBlockWithMetadata(8, y, 8, Blocks.vine, (byte) 0);
+			setBlockWithMetadata(8, y, 8, Blocks.vine, (byte) 4);
 			setBlock(9, y, 8, Blocks.log);
 		}
 		y--;
