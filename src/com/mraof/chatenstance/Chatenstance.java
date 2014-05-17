@@ -111,5 +111,9 @@ public class Chatenstance
 			DimensionManager.registerProviderType(chatProviderId, WorldProviderChatland.class, true);
 			DimensionManager.registerDimension(chatDimensionId, chatProviderId);
 		}
+		if(event.getSide.isClient())
+		{
+			ClientProxy.registerRenderers();
+		}
 	}
 }
