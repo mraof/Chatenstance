@@ -16,14 +16,6 @@ public class RoomEmptyBig extends Room
 	public void generate(ChunkProviderChatland chatland, int chunkX, int chunkZ) 
 	{
 		super.generate(chatland, chunkX, chunkZ);
-		double[][] idsDouble = new double[4][1];
-		chatland.noiseGen0.generateNoiseOctaves(idsDouble[0], chunkX - 1, chunkZ, 1, 1, 1.0D, 1.0D, 1.0D);
-		chatland.noiseGen0.generateNoiseOctaves(idsDouble[1], chunkX + 1, chunkZ, 1, 1, 1.0D, 1.0D, 1.0D);
-		chatland.noiseGen0.generateNoiseOctaves(idsDouble[2], chunkX, chunkZ - 1, 1, 1, 1.0D, 1.0D, 1.0D);
-		chatland.noiseGen0.generateNoiseOctaves(idsDouble[3], chunkX, chunkZ + 1, 1, 1, 1.0D, 1.0D, 1.0D);
-		ids = new int[4];
-		for(int i = 0; i < 4; i++)
-			ids[i] = (int) idsDouble[i][0];
 
 		int x = ids[0] <= -1 ? 0 : 1;
 		int xMax = ids[1] <= -1 ? 16 : 15;
