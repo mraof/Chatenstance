@@ -98,7 +98,10 @@ public class ChunkProviderChatland implements IChunkProvider
 			int var4) 
 	{
 		if(var1 == EnumCreatureType.monster)
+		{
+			System.out.println("Getting monsters");
 			return monsters;
+		}
 		return null;
 	}
 
