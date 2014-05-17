@@ -28,5 +28,19 @@ public class WorldProviderChatland extends WorldProvider
 		super.registerWorldChunkManager();
 		this.worldChunkMgr = new WorldChunkManagerHell(BiomeGenBase.plains, 0.5F);
 	}
+
+	@Override
+	protected void generateLightBrightnessTable()
+	{
+		for(int i = 0; i <= 15; i++)
+			this.lightBrightnessTable[15 - i] = (float) i / 15.0F;
+	}
+	@Override
+	public boolean isDaytime()
+	{
+		return false;
+	}
+
+	
 }
 
