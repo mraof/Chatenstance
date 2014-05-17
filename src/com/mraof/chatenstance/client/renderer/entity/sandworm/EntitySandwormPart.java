@@ -14,5 +14,6 @@ public class EntitySandwormPart extends EntityCreature
 	public boolean isAIEnabled()
 	{
 		return false;
+		super.collideWithEntity(new Entity());
 	}
 }
