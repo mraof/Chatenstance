@@ -40,13 +40,15 @@ public class Room
 			return new RoomGlowstone(blocks);
 		case 5:
 			return new RoomObelisk(blocks);
+		case -1:
+			return new RoomEmptyBig(blocks);
 		}
 	}
 	public void setBlock(int x, int y, int z, Block block)
 	{
 		chunkBlocks[x * 4096 | z * 256 | y] = block;
 	}
-	public void generate(ChunkProviderChatland chunkProviderChatland) 
+	public void generate(ChunkProviderChatland chunkProviderChatland, int chunkX, int chunkZ) 
 	{
 		this.generate();	
 	}
