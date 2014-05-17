@@ -21,12 +21,13 @@ public class RoomEmptyBig extends Room
 		int z = ((int) ids[4]) == -1 ? 0 : 1;
 		int zMax = ((int) ids[6]) == -1 ? 15 : 16;
 		int xMax = ((int) ids[8]) == -1 ? 15 : 16;
-		for(; x < xMax; x++)
+
+		for(; x < xMax + 15; x++)
 			for(; z < zMax; z++)
 				for(int y = 20; y < 34; y++)
 				{
 					setBlock(x, y, z, Blocks.air);
-					System.out.println(x + " " + y + " " + z);
+					System.out.println(x + " " + y + " " + z + " | " + xMax + " " + zMax);
 				}
 	}
 }
