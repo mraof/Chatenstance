@@ -12,17 +12,6 @@ public class Room
 	{
 		this.chunkBlocks = blocks;
 	}
-	public void generate()
-	{
-		for(int i = 0; i < 2; i++)
-			for(int y = 20; y < 24; y++)
-			{
-				setBlock(7 + i, y, 0, Blocks.air);
-				setBlock(7 + i, y, 15, Blocks.air);
-				setBlock(0, y, 7 + i, Blocks.air);
-				setBlock(15, y, 7 + i, Blocks.air);
-			}
-	}
 	public static Room getRoomFromId(int id, Block[] blocks)
 	{
 		switch(id)
@@ -50,7 +39,15 @@ public class Room
 	}
 	public void generate(ChunkProviderChatland chunkProviderChatland, int chunkX, int chunkZ) 
 	{
-		this.generate();	
+		for(int i = 0; i < 2; i++)
+			for(int y = 20; y < 24; y++)
+			{
+				setBlock(7 + i, y, 0, Blocks.air);
+				setBlock(7 + i, y, 15, Blocks.air);
+				setBlock(0, y, 7 + i, Blocks.air);
+				setBlock(15, y, 7 + i, Blocks.air);
+			}
+
 	}
 }
 
