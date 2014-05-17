@@ -16,7 +16,6 @@ public class Room
 	{
 		switch(id)
 		{
-		default:
 		case 0:
 			return new RoomEmpty(blocks);
 		case 1:
@@ -29,6 +28,7 @@ public class Room
 			return new RoomGlowstone(blocks);
 		case 5:
 			return new RoomObelisk(blocks);
+		default:
 		case -1:
 			return new RoomEmptyBig(blocks);
 		}
