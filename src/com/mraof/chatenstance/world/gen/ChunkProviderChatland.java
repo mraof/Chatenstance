@@ -50,7 +50,7 @@ public class ChunkProviderChatland implements IChunkProvider
 		double[] id = new double[1];
 		noiseGen0.generateNoiseOctaves(id, chunkX, chunkZ, 1, 1, 1.0D, 1.0D, 1.0D);
 		Room room = Room.getRoomFromId((int) id[0], chunkBlocks);
-		room.generate();
+		room.generate(this);
 		Chunk chunk = new Chunk(this.world, chunkBlocks, chunkMetadata, chunkX, chunkZ);
 		return chunk;
 	}

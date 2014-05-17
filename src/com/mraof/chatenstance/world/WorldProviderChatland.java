@@ -1,11 +1,15 @@
 package com.mraof.chatenstance.world;
 
+import net.minecraft.util.Vec3;
 import net.minecraft.world.WorldProvider;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.biome.WorldChunkManagerHell;
 import net.minecraft.world.chunk.IChunkProvider;
 
 import com.mraof.chatenstance.world.gen.ChunkProviderChatland;
+
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class WorldProviderChatland extends WorldProvider
 {
@@ -28,6 +32,12 @@ public class WorldProviderChatland extends WorldProvider
 		super.registerWorldChunkManager();
 		this.worldChunkMgr = new WorldChunkManagerHell(BiomeGenBase.plains, 0.5F);
 	}
+	@SideOnly(Side.CLIENT)
+	@Override
+	public Vec3 getFogColor(float par1, float par2)
+	{
+		return this.worldObj.getWorldVec3Pool().getVecFromPool(0,.5D,.5D);
+	}
 
 	@Override
 	protected void generateLightBrightnessTable()
@@ -44,7 +54,7 @@ public class WorldProviderChatland extends WorldProvider
 	@Override
 	public float calculateCelestialAngle(long par1, float par3)
 	{
-		return 18000;
+		return 0.5F;
 	}
 
 	

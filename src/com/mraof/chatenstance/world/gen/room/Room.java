@@ -3,6 +3,8 @@ package com.mraof.chatenstance.world.gen.room;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 
+import com.mraof.chatenstance.world.gen.ChunkProviderChatland;
+
 public class Room
 {
 	public Block[] chunkBlocks;
@@ -43,6 +45,10 @@ public class Room
 	public void setBlock(int x, int y, int z, Block block)
 	{
 		chunkBlocks[x * 4096 | z * 256 | y] = block;
+	}
+	public void generate(ChunkProviderChatland chunkProviderChatland) 
+	{
+		this.generate();	
 	}
 }
 
