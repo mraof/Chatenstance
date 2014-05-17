@@ -12,6 +12,7 @@ import com.mraof.chatenstance.chat.LightningStrike;
 import com.mraof.chatenstance.chat.MagicWords;
 import com.mraof.chatenstance.chat.MobHate;
 import com.mraof.chatenstance.chat.PlantTalk;
+import com.mraof.chatenstance.client.ClientProxy;
 import com.mraof.chatenstance.world.WorldProviderChatland;
 
 import cpw.mods.fml.common.Mod;
@@ -111,7 +112,7 @@ public class Chatenstance
 			DimensionManager.registerProviderType(chatProviderId, WorldProviderChatland.class, true);
 			DimensionManager.registerDimension(chatDimensionId, chatProviderId);
 		}
-		if(event.getSide.isClient())
+		if(event.getSide().isClient())
 		{
 			ClientProxy.registerRenderers();
 		}
