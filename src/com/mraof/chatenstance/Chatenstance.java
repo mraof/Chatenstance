@@ -30,6 +30,7 @@ public class Chatenstance
 	public static ChatParser chatParser;
 	public int chatDimensionId = 0;
 	private int chatProviderId;
+	private boolean hasMobs;
 	@EventHandler 
 	public void preInit(FMLPreInitializationEvent event)
 	{
@@ -101,6 +102,10 @@ public class Chatenstance
 			dimensionWords.returnPhrase = config.get("DimensionWords", "returnPhrase", "I want to go home").getString();
 			chatParser.addHandler(dimensionWords);
 		}
+		if(config.get("Parts", "Mobs", true).getBoolean(true))
+		{
+			hasMobs = true;
+		}
 
 		config.save();
 		GameRegistry.registerBlock(new ChatBox(), "chatBox").setCreativeTab(CreativeTabs.tabDecorations);
@@ -119,7 +124,10 @@ public class Chatenstance
 		{
 			ClientProxy.registerRenderers();
 		}
-		EntityList.addMapping(EntityMummy.class, "Mummy", 0, 0xE1DD9A, 0x536b51);
-		EntityRegistry.registerModEntity(EntityMummy.class, "Mummy", 0, this, 80, 3, true);
+		if(hasMobs)
+		{
+			EntityList.addMapping(EntityMummy.class, "Mummy", 0, 0xE1DD9A, 0x536b51);
+			EntityRegistry.registerModEntity(EntityMummy.class, "Mummy", 0, this, 80, 3, true);
+		}
 	}
 }
