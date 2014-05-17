@@ -32,6 +32,12 @@ public class Room
 			return new RoomGrassy(blocks);
 		case 2:
 			return new Room(blocks);
+		case 3:
+			return new RoomPool(blocks);
+		case 4:
+			return new RoomGlowstone(blocks);
+		case 5:
+			return new RoomObelisk(blocks);
 		}
 	}
 	public void setBlock(int x, int y, int z, Block block)

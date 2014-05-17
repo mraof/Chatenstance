@@ -1,6 +1,8 @@
 package com.mraof.chatenstance.world;
 
 import net.minecraft.world.WorldProvider;
+import net.minecraft.world.biome.BiomeGenBase;
+import net.minecraft.world.biome.WorldChunkManagerHell;
 import net.minecraft.world.chunk.IChunkProvider;
 
 import com.mraof.chatenstance.world.gen.ChunkProviderChatland;
@@ -20,6 +22,11 @@ public class WorldProviderChatland extends WorldProvider
 	@Override
 	public String getDimensionName() {
 		return "Chatland";
+	}
+	public void registerWorldChunkManager()
+	{
+		super.registerWorldChunkManager();
+		this.worldChunkMgr = new WorldChunkManagerHell(BiomeGenBase.plains, 0.5F);
 	}
 }
 
