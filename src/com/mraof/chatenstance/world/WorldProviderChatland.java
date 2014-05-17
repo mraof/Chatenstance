@@ -41,6 +41,12 @@ public class WorldProviderChatland extends WorldProvider
 		return false;
 	}
 
+	@Override
+	public float calculateCelestialAngle(long par1, float par3)
+	{
+		return 18000;
+	}
+
 	
 }
 
