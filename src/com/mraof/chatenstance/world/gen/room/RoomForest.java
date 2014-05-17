@@ -42,11 +42,13 @@ public class RoomForest extends RoomEmptyBig
 		for(y = y - height / 2; y < yBase + height; y++)
 			for(int xCurrent = x - 2; xCurrent <= x + 2; xCurrent++)
 				for(int zCurrent = z - 2; zCurrent <= z + 2; zCurrent++)
-					setBlock(xCurrent, y, zCurrent, Blocks.leaves);
+					if(getBlock(xCurrent, y, zCurrent) != Blocks.log)
+						setBlock(xCurrent, y, zCurrent, Blocks.leaves);
 
 		for(int xCurrent = x - 1; xCurrent <= x + 1; xCurrent++)
 			for(int zCurrent = z - 1; zCurrent <= z + 1; zCurrent++)
-				setBlock(xCurrent, y, zCurrent, Blocks.leaves);
+				if(getBlock(xCurrent, y, zCurrent) != Blocks.log)
+					setBlock(xCurrent, y, zCurrent, Blocks.leaves);
 
 	}
 }

@@ -53,6 +53,10 @@ public class Room
 		chunkBlocks[x * 4096 | z * 256 | y] = block;
 		chunkMetadata[x * 4096 | z * 256 | y] = metadata;
 	}
+	public Block getBlock(int x, int y, int z)
+	{
+		return chunkBlocks[x * 4096 | z * 256 | y];
+	}
 	public void generate(ChunkProviderChatland chatland, int chunkX, int chunkZ) 
 	{
 		double[][] idsDouble = new double[4][1];

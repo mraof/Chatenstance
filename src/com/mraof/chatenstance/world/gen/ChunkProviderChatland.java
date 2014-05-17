@@ -32,7 +32,7 @@ public class ChunkProviderChatland implements IChunkProvider
 		this.seed = seed;
 		rand = new Random(seed);
 		noiseGen0 = new NoiseGeneratorOctaves(rand, 4);
-		monsters.add(new SpawnListEntry(EntityMummy.class, 1, 1, 5));
+		monsters.add(new SpawnListEntry(EntityMummy.class, 10, 1, 5));
 
 	}
 
