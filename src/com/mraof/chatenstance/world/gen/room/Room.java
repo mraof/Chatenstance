@@ -34,6 +34,8 @@ public class Room
 			return new RoomEmptyBig(blocks, metadatas);
 		case -2:
 			return new RoomPool(blocks, metadatas);
+		case -3:
+			return new RoomForest(blocks, metadatas);
 		case -4:
 			return new RoomEntrance(blocks, metadatas);
 		}
