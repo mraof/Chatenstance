@@ -18,6 +18,7 @@ public class ChatBox extends Block implements ITileEntityProvider
 	{
 		super(Material.rock);
 		setHardness(1.0F);
+		this.setBlockName("ChatBox");
 	}
 
 /*	@Override
