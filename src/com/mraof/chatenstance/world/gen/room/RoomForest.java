@@ -27,7 +27,10 @@ public class RoomForest extends RoomEmptyBig
 		for(; x < xMax; x++)
 			for(int z = zMin; z < zMax; z++)
 				if(rand.nextDouble() < .05)
+				{
+					setBlock(x, 19, z, Blocks.dirt);
 					createTree(x, 20, z);
+				}
 	}
 	public void createTree(int x, int y, int z)
 	{
@@ -43,7 +46,7 @@ public class RoomForest extends RoomEmptyBig
 
 		for(int xCurrent = x - 1; xCurrent <= x + 1; xCurrent++)
 			for(int zCurrent = z - 1; zCurrent <= z + 1; zCurrent++)
-				setBlock(xCurrent, yBase + height + 1, zCurrent, Blocks.leaves);
+				setBlock(xCurrent, y, zCurrent, Blocks.leaves);
 
 	}
 }
