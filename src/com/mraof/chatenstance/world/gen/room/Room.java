@@ -9,6 +9,7 @@ public class Room
 {
 	public Block[] chunkBlocks;
 	public byte[] chunkMetadata;
+	int[] ids;
 	public Room(Block[] blocks, byte[] metadatas)
 	{
 		this.chunkBlocks = blocks;
@@ -25,6 +26,7 @@ public class Room
 		case 2:
 			return new Room(blocks, metadatas);
 		case 3:
+			return new RoomHallway
 		case 4:
 			return new RoomGlowstone(blocks, metadatas);
 		case 5:
@@ -51,21 +53,24 @@ public class Room
 	}
 	public void generate(ChunkProviderChatland chatland, int chunkX, int chunkZ) 
 	{
-		double[][] ids = new double[4][1];
-		chatland.noiseGen0.generateNoiseOctaves(ids[0], chunkX - 1, chunkZ, 1, 1, 1.0D, 1.0D, 1.0D);
-		chatland.noiseGen0.generateNoiseOctaves(ids[1], chunkX + 1, chunkZ, 1, 1, 1.0D, 1.0D, 1.0D);
-		chatland.noiseGen0.generateNoiseOctaves(ids[2], chunkX, chunkZ - 1, 1, 1, 1.0D, 1.0D, 1.0D);
-		chatland.noiseGen0.generateNoiseOctaves(ids[3], chunkX, chunkZ + 1, 1, 1, 1.0D, 1.0D, 1.0D);
+		double[][] idsDouble = new double[4][1];
+		chatland.noiseGen0.generateNoiseOctaves(idsDouble[0], chunkX - 1, chunkZ, 1, 1, 1.0D, 1.0D, 1.0D);
+		chatland.noiseGen0.generateNoiseOctaves(idsDouble[1], chunkX + 1, chunkZ, 1, 1, 1.0D, 1.0D, 1.0D);
+		chatland.noiseGen0.generateNoiseOctaves(idsDouble[2], chunkX, chunkZ - 1, 1, 1, 1.0D, 1.0D, 1.0D);
+		chatland.noiseGen0.generateNoiseOctaves(idsDouble[3], chunkX, chunkZ + 1, 1, 1, 1.0D, 1.0D, 1.0D);
+		ids = new int[4];
+		for(int i = 0; i < 4; i++)
+			ids[i] = (int) idsDouble[i][0];
 		for(int i = 0; i < 2; i++)
 			for(int y = 20; y < 24; y++)
 			{
-				if(((int) ids[0][0]) != 2)
+				if((ids[0]) != 2)
 					setBlock(0, y, 7 + i, Blocks.air);
-				if(((int) ids[1][0]) != 2)
+				if((ids[1]) != 2)
 					setBlock(15, y, 7 + i, Blocks.air);
-				if(((int) ids[2][0]) != 2)
+				if((ids[2]) != 2)
 					setBlock(7 + i, y, 0, Blocks.air);
-				if(((int) ids[3][0]) != 2)
+				if((ids[3]) != 2)
 					setBlock(7 + i, y, 15, Blocks.air);
 			}
 
