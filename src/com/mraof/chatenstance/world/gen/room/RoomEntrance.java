@@ -6,7 +6,7 @@ import net.minecraft.init.Blocks;
 
 import com.mraof.chatenstance.world.gen.ChunkProviderChatland;
 
-public class RoomEntrance extends Room {
+public class RoomEntrance extends RoomEmptyBig {
 	public RoomEntrance(Block[] blocks, byte[] metadatas) {
 		super(blocks, metadatas);
 	}
@@ -16,10 +16,6 @@ public class RoomEntrance extends Room {
 	{
 		super.generate(chatland, chunkX, chunkZ);
 
-		for(int x = 1; x < 15; x++)
-			for(int z = 1; z < 15; z++)
-				for(int y = 20; y < 34; y++)
-					setBlock(x, y, z, Blocks.air);
 		int y = 20;
 		for(; chunkBlocks[4096 * 8 | 256 * 8 | y] != null; y++)
 		{

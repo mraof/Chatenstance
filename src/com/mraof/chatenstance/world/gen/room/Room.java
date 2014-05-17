@@ -30,11 +30,11 @@ public class Room
 			return new RoomGlowstone(blocks, metadatas);
 		case 5:
 			return new RoomObelisk(blocks, metadatas);
-		case -1:
-			return new RoomEntrance(blocks, metadatas);
 		default:
-		case -2:
+		case -1:
 			return new RoomEmptyBig(blocks, metadatas);
+		case -4:
+			return new RoomEntrance(blocks, metadatas);
 		}
 	}
 	public void setBlock(int x, int y, int z, Block block)
