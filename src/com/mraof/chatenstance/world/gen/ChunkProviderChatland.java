@@ -1,5 +1,6 @@
 package com.mraof.chatenstance.world.gen;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
@@ -9,10 +10,12 @@ import net.minecraft.init.Blocks;
 import net.minecraft.util.IProgressUpdate;
 import net.minecraft.world.ChunkPosition;
 import net.minecraft.world.World;
+import net.minecraft.world.biome.BiomeGenBase.SpawnListEntry;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraft.world.gen.NoiseGeneratorOctaves;
 
+import com.mraof.chatenstance.entity.EntityMummy;
 import com.mraof.chatenstance.world.gen.room.Room;
 
 public class ChunkProviderChatland implements IChunkProvider
@@ -21,6 +24,7 @@ public class ChunkProviderChatland implements IChunkProvider
 	long seed;
 	public World world;
 	public NoiseGeneratorOctaves noiseGen0;
+	public List<SpawnListEntry> monsters = new ArrayList<SpawnListEntry>();
 
 	public ChunkProviderChatland(World world, long seed)
 	{
@@ -28,6 +32,7 @@ public class ChunkProviderChatland implements IChunkProvider
 		this.seed = seed;
 		rand = new Random(seed);
 		noiseGen0 = new NoiseGeneratorOctaves(rand, 4);
+		monsters.add(new SpawnListEntry(EntityMummy.class, 1, 1, 5));
 
 	}
 
@@ -90,7 +95,10 @@ public class ChunkProviderChatland implements IChunkProvider
 	@SuppressWarnings("rawtypes")
 	@Override
 	public List getPossibleCreatures(EnumCreatureType var1, int var2, int var3,
-			int var4) {
+			int var4) 
+	{
+		if(var1 == EnumCreatureType.monster)
+			return monsters;
 		return null;
 	}
 
