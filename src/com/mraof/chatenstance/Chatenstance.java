@@ -1,6 +1,7 @@
 package com.mraof.chatenstance;
 
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.EntityList;
 import net.minecraftforge.common.DimensionManager;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.config.Configuration;
@@ -13,12 +14,14 @@ import com.mraof.chatenstance.chat.MagicWords;
 import com.mraof.chatenstance.chat.MobHate;
 import com.mraof.chatenstance.chat.PlantTalk;
 import com.mraof.chatenstance.client.ClientProxy;
+import com.mraof.chatenstance.entity.EntityMummy;
 import com.mraof.chatenstance.world.WorldProviderChatland;
 
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+import cpw.mods.fml.common.registry.EntityRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 
 @Mod(modid = "Chatenstance", name = "Chatenstance", version = "@VERSION@")
@@ -116,5 +119,7 @@ public class Chatenstance
 		{
 			ClientProxy.registerRenderers();
 		}
+		EntityList.addMapping(EntityMummy.class, "Mummy", 0, 0xE1DD9A, 0x536b51);
+		EntityRegistry.registerModEntity(EntityMummy.class, "Mummy", 0, this, 80, 3, true);
 	}
 }
