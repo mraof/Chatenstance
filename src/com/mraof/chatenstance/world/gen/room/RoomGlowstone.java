@@ -8,9 +8,9 @@ import com.mraof.chatenstance.world.gen.ChunkProviderChatland;
 
 public class RoomGlowstone extends Room 
 {
-	public RoomGlowstone(Block[] blocks) 
+	public RoomGlowstone(Block[] blocks, byte[] metadatas) 
 	{
-		super(blocks);
+		super(blocks, metadatas);
 	}
 
 	@Override

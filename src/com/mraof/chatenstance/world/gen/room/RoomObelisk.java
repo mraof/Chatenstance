@@ -7,9 +7,9 @@ import com.mraof.chatenstance.world.gen.ChunkProviderChatland;
 
 public class RoomObelisk extends Room 
 {
-	public RoomObelisk(Block[] blocks) 
+	public RoomObelisk(Block[] blocks, byte[] metadatas) 
 	{
-		super(blocks);
+		super(blocks, metadatas);
 	}
 
 	@Override

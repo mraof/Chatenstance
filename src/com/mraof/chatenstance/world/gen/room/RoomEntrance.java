@@ -7,8 +7,8 @@ import net.minecraft.init.Blocks;
 import com.mraof.chatenstance.world.gen.ChunkProviderChatland;
 
 public class RoomEntrance extends Room {
-	public RoomEntrance(Block[] blocks) {
-		super(blocks);
+	public RoomEntrance(Block[] blocks, byte[] metadatas) {
+		super(blocks, metadatas);
 	}
 
 	@Override
@@ -23,8 +23,16 @@ public class RoomEntrance extends Room {
 		int y = 20;
 		for(; chunkBlocks[4096 * 8 | 256 * 8 | y] != null; y++)
 		{
-			setBlock(8, y, 8, Blocks.ladder);
+			setBlockWithMetadata(8, y, 8, Blocks.ladder, (byte) 3);
 			setBlock(9, y, 8, Blocks.sandstone);
 		}
+		setBlock(8, y, 8, Blocks.glowstone);
+		setBlock(9, y, 8, Blocks.glowstone);
+		setBlock(10, y, 8, Blocks.glowstone);
+		setBlock(8, y, 9, Blocks.glowstone);
+		setBlock(10, y, 9, Blocks.glowstone);
+		setBlock(8, y, 10, Blocks.glowstone);
+		setBlock(9, y, 10, Blocks.glowstone);
+		setBlock(10, y, 10, Blocks.glowstone);
 	}
 }

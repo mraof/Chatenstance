@@ -7,8 +7,8 @@ import com.mraof.chatenstance.world.gen.ChunkProviderChatland;
 
 public class RoomGrassy extends Room
 {
-	public RoomGrassy(Block[] blocks) {
-		super(blocks);
+	public RoomGrassy(Block[] blocks, byte[] metadatas) {
+		super(blocks, metadatas);
 	}
 
 	@Override

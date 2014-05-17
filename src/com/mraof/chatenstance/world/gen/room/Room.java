@@ -8,36 +8,43 @@ import com.mraof.chatenstance.world.gen.ChunkProviderChatland;
 public class Room
 {
 	public Block[] chunkBlocks;
-	public Room(Block[] blocks)
+	public byte[] chunkMetadata;
+	public Room(Block[] blocks, byte[] metadatas)
 	{
 		this.chunkBlocks = blocks;
+		this.chunkMetadata = metadatas;
 	}
-	public static Room getRoomFromId(int id, Block[] blocks)
+	public static Room getRoomFromId(int id, Block[] blocks, byte[] metadatas)
 	{
 		switch(id)
 		{
 		case 0:
-			return new RoomEmpty(blocks);
+			return new RoomEmpty(blocks, metadatas);
 		case 1:
-			return new RoomGrassy(blocks);
+			return new RoomGrassy(blocks, metadatas);
 		case 2:
-			return new Room(blocks);
+			return new Room(blocks, metadatas);
 		case 3:
-			return new RoomPool(blocks);
+			return new RoomPool(blocks, metadatas);
 		case 4:
-			return new RoomGlowstone(blocks);
+			return new RoomGlowstone(blocks, metadatas);
 		case 5:
-			return new RoomObelisk(blocks);
+			return new RoomObelisk(blocks, metadatas);
 		case -1:
-			return new RoomEntrance(blocks);
+			return new RoomEntrance(blocks, metadatas);
 		default:
 		case -2:
-			return new RoomEmptyBig(blocks);
+			return new RoomEmptyBig(blocks, metadatas);
 		}
 	}
 	public void setBlock(int x, int y, int z, Block block)
 	{
 		chunkBlocks[x * 4096 | z * 256 | y] = block;
+	}
+	public void setBlockWithMetadata(int x, int y, int z, Block block, byte metadata)
+	{
+		chunkBlocks[x * 4096 | z * 256 | y] = block;
+		chunkMetadata[x * 4096 | z * 256 | y] = metadata;
 	}
 	public void generate(ChunkProviderChatland chatland, int chunkX, int chunkZ) 
 	{

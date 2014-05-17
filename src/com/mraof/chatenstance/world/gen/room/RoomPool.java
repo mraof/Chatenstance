@@ -6,8 +6,8 @@ import net.minecraft.init.Blocks;
 import com.mraof.chatenstance.world.gen.ChunkProviderChatland;
 
 public class RoomPool extends Room {
-	public RoomPool(Block[] blocks) {
-		super(blocks);
+	public RoomPool(Block[] blocks, byte[] metadatas) {
+		super(blocks, metadatas);
 	}
 
 	@Override
