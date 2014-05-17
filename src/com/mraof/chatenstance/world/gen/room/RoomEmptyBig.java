@@ -20,10 +20,10 @@ public class RoomEmptyBig extends Room
 		chatland.noiseGen0.generateNoiseOctaves(ids[1], chunkX + 1, chunkZ, 1, 1, 1.0D, 1.0D, 1.0D);
 		chatland.noiseGen0.generateNoiseOctaves(ids[2], chunkX, chunkZ - 1, 1, 1, 1.0D, 1.0D, 1.0D);
 		chatland.noiseGen0.generateNoiseOctaves(ids[3], chunkX, chunkZ + 1, 1, 1, 1.0D, 1.0D, 1.0D);
-		int x = ((int) ids[0][0]) <= -1 ? 0 : 1;
-		int xMax = ((int) ids[1][0]) <= -1 ? 16 : 15;
-		int zMin = ((int) ids[2][0]) <= -1 ? 0 : 1;
-		int zMax = ((int) ids[3][0]) <= -1 ? 16 : 15;
+		int x = ((int) ids[0][0]) <= -2 ? 0 : 1;
+		int xMax = ((int) ids[1][0]) <= -2 ? 16 : 15;
+		int zMin = ((int) ids[2][0]) <= -2 ? 0 : 1;
+		int zMax = ((int) ids[3][0]) <= -2 ? 16 : 15;
 
 		for(; x < xMax; x++)
 			for(int z = zMin; z < zMax; z++)

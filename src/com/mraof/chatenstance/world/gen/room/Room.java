@@ -28,8 +28,10 @@ public class Room
 			return new RoomGlowstone(blocks);
 		case 5:
 			return new RoomObelisk(blocks);
-		default:
 		case -1:
+			return new RoomEntrance(blocks);
+		default:
+		case -2:
 			return new RoomEmptyBig(blocks);
 		}
 	}
