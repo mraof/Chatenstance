@@ -34,7 +34,7 @@ public class RoomForest extends RoomEmptyBig
 	}
 	public void createTree(int x, int y, int z)
 	{
-		int height = rand.nextInt(6) + 4;
+		int height = rand.nextInt(12) + 4;
 		int yBase = y;
 		for(; y < yBase + height; y++)
 			setBlock(x, y, z, Blocks.log);
