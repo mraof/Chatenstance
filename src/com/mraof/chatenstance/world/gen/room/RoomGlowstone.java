@@ -18,7 +18,7 @@ public class RoomGlowstone extends Room
 		for(int x = 1; x < 15; x++)
 			for(int z = 1; z < 15; z++)
 			{
-				setBlock(x, 19, z, Blocks.grass);
+				setBlock(x, 19, z, Blocks.glowstone);
 				for(int y = 20; y < 34; y++)
 					setBlock(x, y, z, Blocks.air);
 			}
