@@ -14,10 +14,10 @@ public class RoomLava extends RoomEmptyBig {
 	public void generate(ChunkProviderChatland chatland, int chunkX, int chunkZ)
 	{
 		super.generate(chatland, chunkX, chunkZ);
-		int x = ids[0] == -2 ? 0 : 4;
-		int xMax = ids[1] == -2 ? 16 : 12;
-		int zMin = ids[2] == -2 ? 0 : 4;
-		int zMax = ids[3] == -2 ? 16 : 12;
+		int x = ids[0] == -5 ? 0 : 4;
+		int xMax = ids[1] == -5 ? 16 : 12;
+		int zMin = ids[2] == -5 ? 0 : 4;
+		int zMax = ids[3] == -5 ? 16 : 12;
 
 		for(; x < xMax; x++)
 			for(int z = zMin; z < zMax; z++)
