@@ -18,12 +18,14 @@ import com.mraof.chatenstance.world.gen.room.Room;
 public class ChunkProviderChatland implements IChunkProvider
 {
 	Random rand;
-	World world;
+	long seed;
+	public World world;
 	public NoiseGeneratorOctaves noiseGen0;
 
 	public ChunkProviderChatland(World world, long seed)
 	{
 		this.world = world;
+		this.seed = seed;
 		rand = new Random(seed);
 		noiseGen0 = new NoiseGeneratorOctaves(rand, 4);
 
@@ -109,5 +111,9 @@ public class ChunkProviderChatland implements IChunkProvider
 
 	@Override
 	public void saveExtraData() {
+	}
+	public long getSeed()
+	{
+		return seed;
 	}
 }
