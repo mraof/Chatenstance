@@ -37,15 +37,24 @@ public class Room
 	{
 		chunkBlocks[x * 4096 | z * 256 | y] = block;
 	}
-	public void generate(ChunkProviderChatland chunkProviderChatland, int chunkX, int chunkZ) 
+	public void generate(ChunkProviderChatland chatland, int chunkX, int chunkZ) 
 	{
+		double[][] ids = new double[4][1];
+		chatland.noiseGen0.generateNoiseOctaves(ids[0], chunkX - 1, chunkZ, 1, 1, 1.0D, 1.0D, 1.0D);
+		chatland.noiseGen0.generateNoiseOctaves(ids[1], chunkX + 1, chunkZ, 1, 1, 1.0D, 1.0D, 1.0D);
+		chatland.noiseGen0.generateNoiseOctaves(ids[2], chunkX, chunkZ - 1, 1, 1, 1.0D, 1.0D, 1.0D);
+		chatland.noiseGen0.generateNoiseOctaves(ids[3], chunkX, chunkZ + 1, 1, 1, 1.0D, 1.0D, 1.0D);
 		for(int i = 0; i < 2; i++)
 			for(int y = 20; y < 24; y++)
 			{
-				setBlock(7 + i, y, 0, Blocks.air);
-				setBlock(7 + i, y, 15, Blocks.air);
-				setBlock(0, y, 7 + i, Blocks.air);
-				setBlock(15, y, 7 + i, Blocks.air);
+				if(((int) ids[0][0]) != 2)
+					setBlock(0, y, 7 + i, Blocks.air);
+				if(((int) ids[1][0]) != 2)
+					setBlock(15, y, 7 + i, Blocks.air);
+				if(((int) ids[2][0]) != 2)
+					setBlock(7 + i, y, 0, Blocks.air);
+				if(((int) ids[3][0]) != 2)
+					setBlock(7 + i, y, 15, Blocks.air);
 			}
 
 	}
