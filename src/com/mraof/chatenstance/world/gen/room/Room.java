@@ -25,7 +25,6 @@ public class Room
 		case 2:
 			return new Room(blocks, metadatas);
 		case 3:
-			return new RoomPool(blocks, metadatas);
 		case 4:
 			return new RoomGlowstone(blocks, metadatas);
 		case 5:
@@ -33,6 +32,8 @@ public class Room
 		default:
 		case -1:
 			return new RoomEmptyBig(blocks, metadatas);
+		case -2:
+			return new RoomPool(blocks, metadatas);
 		case -4:
 			return new RoomEntrance(blocks, metadatas);
 		}

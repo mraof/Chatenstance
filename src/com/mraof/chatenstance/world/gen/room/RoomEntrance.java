@@ -19,8 +19,8 @@ public class RoomEntrance extends RoomEmptyBig {
 		int y = 20;
 		for(; chunkBlocks[4096 * 8 | 256 * 8 | y] != null; y++)
 		{
-			setBlockWithMetadata(8, y, 8, Blocks.ladder, (byte) 4);
-			setBlock(9, y, 8, Blocks.sandstone);
+			setBlockWithMetadata(8, y, 8, Blocks.vine, (byte) 4);
+			setBlock(9, y, 8, Blocks.log);
 		}
 		y--;
 		setBlock(7, y, 7, Blocks.glowstone);

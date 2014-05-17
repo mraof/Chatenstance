@@ -5,7 +5,7 @@ import net.minecraft.init.Blocks;
 
 import com.mraof.chatenstance.world.gen.ChunkProviderChatland;
 
-public class RoomPool extends Room {
+public class RoomPool extends RoomEmptyBig {
 	public RoomPool(Block[] blocks, byte[] metadatas) {
 		super(blocks, metadatas);
 	}
@@ -14,12 +14,13 @@ public class RoomPool extends Room {
 	public void generate(ChunkProviderChatland chatland, int chunkX, int chunkZ)
 	{
 		super.generate(chatland, chunkX, chunkZ);
-		for(int x = 1; x < 15; x++)
-			for(int z = 1; z < 15; z++)
-				for(int y = 20; y < 34; y++)
-					setBlock(x, y, z, Blocks.air);
-		for(int x = 4; x < 12; x++)
-			for(int z = 4; z < 12; z++)
+		int x = ids[0] == -2 ? 0 : 4;
+		int xMax = ids[1] == -2 ? 16 : 12;
+		int zMin = ids[2] == -2 ? 0 : 4;
+		int zMax = ids[3] == -2 ? 16 : 12;
+
+		for(; x < xMax; x++)
+			for(int z = zMin; z < zMax; z++)
 				for(int y = 17; y < 20; y++)
 					setBlock(x, y, z, Blocks.water);
 	}
