@@ -17,7 +17,7 @@ public class ClientProxy
 	@SideOnly(Side.CLIENT)
 	public static void registerRenderers()
 	{
-		RenderingRegistry.registerEntityRenderingHandler(EntityMummy.class, new RenderMummy(new ModelBiped(), 1.2F));
+		RenderingRegistry.registerEntityRenderingHandler(EntityMummy.class, new RenderMummy(new ModelBiped(), 0.5F));
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityChatBox.class, new RenderChatBox());
 	}
 }

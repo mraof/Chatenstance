@@ -7,7 +7,6 @@ import com.mraof.chatenstance.world.gen.ChunkProviderChatland;
 
 public class RoomEmptyBig extends Room
 {
-	int[] ids;
 	public RoomEmptyBig(Block[] blocks, byte[] metadatas) {
 		super(blocks, metadatas);
 	}
