@@ -26,7 +26,7 @@ public class Room
 		case 2:
 			return new Room(blocks, metadatas);
 		case 3:
-			return new RoomHallway
+			return new RoomHallway(blocks, metadatas);
 		case 4:
 			return new RoomGlowstone(blocks, metadatas);
 		case 5:
@@ -40,6 +40,8 @@ public class Room
 			return new RoomForest(blocks, metadatas);
 		case -4:
 			return new RoomEntrance(blocks, metadatas);
+		case -5:
+			return new RoomLava(blocks, metadatas);
 		}
 	}
 	public void setBlock(int x, int y, int z, Block block)
