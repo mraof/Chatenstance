@@ -46,7 +46,7 @@ public class ChunkProviderChatland implements IChunkProvider
 			{
 				for(y = 0; y < 2; y++)
 					chunkBlocks[x * 4096 | z * 256 | y] = Blocks.bedrock;
-				for(;y < 64 + (16 - Math.abs(8 - x ) - Math.abs(8 - z)) / 2 + (chunkX * chunkZ) % 27; y++)
+				for(;y < 64 + (16 - Math.abs(8 - x ) - Math.abs(8 - z)) / 2 + Math.abs(chunkX * chunkZ) % 27; y++)
 					chunkBlocks[x * 4096 | z * 256 | y] = Blocks.sandstone;
 			}
 		double[] id = new double[1];

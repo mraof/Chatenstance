@@ -31,7 +31,7 @@ public class RenderChatBox extends TileEntitySpecialRenderer
 		GL11.glNormal3f(0.0F, 1.0F, 0.0F);
 		GL11.glRotatef(-renderManager.playerViewY, 0.0F, 1.0F, 0.0F);
 		GL11.glRotatef(renderManager.playerViewX, 1.0F, 0.0F, 0.0F);
-		GL11.glScalef(scale, scale, scale);
+		GL11.glScalef(-scale, -scale, -scale);
 		GL11.glDisable(GL11.GL_LIGHTING);
 		GL11.glDepthMask(false);
 		GL11.glEnable(GL11.GL_BLEND);
@@ -40,6 +40,7 @@ public class RenderChatBox extends TileEntitySpecialRenderer
 		GL11.glDisable(GL11.GL_TEXTURE_2D);
 		tessellator.startDrawingQuads();
 		int width = fontRenderer.getStringWidth(text) / 2;
+		tessellator.setColorRGBA_F(0.0F, 0.0F, 0.0F, 0.25F);
 		tessellator.addVertex((double)(-width - 1), -1.0D, 0.0D);
 		tessellator.addVertex((double)(-width - 1), 8.0D, 0.0D);
 		tessellator.addVertex((double)(width + 1), 8.0D, 0.0D);

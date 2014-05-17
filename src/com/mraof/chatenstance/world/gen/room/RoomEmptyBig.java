@@ -32,7 +32,7 @@ public class RoomEmptyBig extends Room
 
 		for(; x < xMax; x++)
 			for(int z = zMin; z < zMax; z++)
-				for(int y = 20; y < 34; y++)
+				for(int y = 20; y < 54; y++)
 					setBlock(x, y, z, Blocks.air);
 	}
 }
