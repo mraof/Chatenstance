@@ -13,6 +13,7 @@ import net.minecraft.entity.ai.EntityAIWander;
 import net.minecraft.entity.ai.EntityAIWatchClosest;
 import net.minecraft.entity.monster.IMob;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
 
@@ -21,7 +22,7 @@ public class EntitySandwormHead extends EntityCreature implements IMob
 	public ArrayList<EntityLiving> parts = new ArrayList<EntityLiving>();
 	public EntityAIAttackOnCollide entityAIAttackOnCollide = new EntityAIAttackOnCollide(this, 0.8F, false);
 	int size;
-	public float sizeSingle = 2F;
+	public float sizeSingle = 4F;
 
 	public EntitySandwormHead(World world)
 	{
@@ -33,7 +34,7 @@ public class EntitySandwormHead extends EntityCreature implements IMob
 		for(int i = 1; i < size; i++)
 		{
 			EntitySandwormBody body = new EntitySandwormBody(this, i);
-			body.setSize(sizeSingle, sizeSingle);
+			body.setWidth(sizeSingle);
 			world.spawnEntityInWorld(body);
 			parts.add(body);
 		}
@@ -124,6 +125,24 @@ public class EntitySandwormHead extends EntityCreature implements IMob
 			part.setPositionAndRotation(destX, destY, destZ, (float) Math.atan2(diffX, diffZ), (float) Math.asin(diffY / Math.sqrt(diffX * diffX + diffZ * diffZ)));
 			previousPart = part;
 		}
+	}
+
+	@Override
+	public void readFromNBT(NBTTagCompound tagCompound)
+	{
+		super.readFromNBT(tagCompound);
+		this.sizeSingle = tagCompound.getFloat("Width");
+		if(this.sizeSingle == 0)
+			this.sizeSingle = 2F;
+		for(int i = 1; i < parts.size(); i++)
+			((EntitySandwormBody)parts.get(i)).setWidth(sizeSingle);
+	}
+
+	@Override
+	public void writeToNBT(NBTTagCompound tagCompound)
+	{
+		super.writeToNBT(tagCompound);
+		tagCompound.setFloat("Width", sizeSingle);
 	}
 
 }

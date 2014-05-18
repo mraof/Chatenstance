@@ -46,4 +46,8 @@ public class EntitySandwormBody extends EntityLiving implements IMob
 	{
 		return false;
 	}
+	public void setWidth(float width)
+	{
+		setSize(width, width);
+	}
 }
