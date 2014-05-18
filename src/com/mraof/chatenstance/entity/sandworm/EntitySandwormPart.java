@@ -49,6 +49,7 @@ public abstract class EntitySandwormPart extends EntityCreature
 			this.posX = part.posX + diffX * ratio;
 			this.posY = part.posY + diffY * ratio;
 			this.posZ = part.posZ + diffZ * ratio;
+			System.out.println(this.place + ": " + this.posX + " " + this.posY + " " + this.posZ);
 		}
 
 	}

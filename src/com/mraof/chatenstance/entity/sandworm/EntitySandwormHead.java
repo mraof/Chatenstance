@@ -18,6 +18,7 @@ public class EntitySandwormHead extends EntitySandwormPart
 	@Override
 	public IEntityLivingData onSpawnWithEgg(IEntityLivingData entityLivingData)
 	{
+		entityLivingData = super.onSpawnWithEgg(entityLivingData);
 		for(int i = 0; i < 8; i++)
 		{
 			EntitySandwormBody body = new EntitySandwormBody(this.worldObj, this, parts.size());
@@ -27,11 +28,5 @@ public class EntitySandwormHead extends EntitySandwormPart
 		}
 		return entityLivingData;
 
-	}
-	public void onEntityUpdate()
-	{
-		super.onEntityUpdate();
-		if(parts.size() > place + 1)
-			parts.get(place + 1).updatePartPosition();
 	}
 }	
