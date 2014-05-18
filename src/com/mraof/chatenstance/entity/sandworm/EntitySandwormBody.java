@@ -4,6 +4,7 @@ import net.minecraft.world.World;
 
 public class EntitySandwormBody extends EntitySandwormPart 
 {
+	boolean justSpawned = true;
 	public EntitySandwormBody(World world)
 	{
 		super(world);
@@ -21,6 +22,14 @@ public class EntitySandwormBody extends EntitySandwormPart
 	{
 		if(this.place > 0)
 		{
+			if(justSpawned)
+			{
+				this.justSpawned = false;
+				this.posX = head.posX + place;
+				this.posY = head.posY;
+				this.posZ = head.posZ;
+				System.out.printf("%d: %f %f %f\n", this.place, this.posX, this.posY, this.posZ);
+			}
 			EntitySandwormPart part = head.parts.get(place - 1);
 			double diffX = this.posX - part.posX;
 			double diffY = this.posY - part.posY;
