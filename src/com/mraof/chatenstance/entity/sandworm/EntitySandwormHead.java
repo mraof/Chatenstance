@@ -25,7 +25,7 @@ public class EntitySandwormHead extends EntitySandwormPart
 			{
 				System.out.println(i + 1);
 				EntitySandwormBody body = new EntitySandwormBody(this.worldObj, this, i + 1);
-				//body.setPosition(this.posX + i + 1, this.posY, this.posZ);
+				body.setPosition(this.posX + i + 1, this.posY, this.posZ);
 				this.worldObj.spawnEntityInWorld(body);
 				parts.add(body);
 			}
