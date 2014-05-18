@@ -132,6 +132,7 @@ public class Chatenstance
 			EntityRegistry.registerModEntity(EntityMummy.class, "Mummy", 0, this, 80, 3, true);
 			EntityList.addMapping(EntitySandwormHead.class, "Sandworm", 1801, 0xC5C690, 0xDEEDA0);
 			EntityRegistry.registerModEntity(EntitySandwormHead.class, "Sandworm", 1, this, 80, 3, true);
+			EntityList.addMapping(EntitySandwormBody.class, "SandwormBody", 1802, 0xC5C690, 0xDEEDA0);
 			EntityRegistry.registerModEntity(EntitySandwormBody.class, "SandwormBody", 2, this, 80, 3, true);
 		}
 	}
