@@ -152,6 +152,6 @@ public class EntitySandwormHead extends EntityCreature implements IMob
 	@Override
 	public boolean getCanSpawnHere()
 	{
-		return this.worldObj.difficultySetting != EnumDifficulty.PEACEFUL && super.getCanSpawnHere();
+		return this.worldObj.difficultySetting != EnumDifficulty.PEACEFUL && super.getCanSpawnHere() && rand.nextInt(8) == 0;
 	}
 }

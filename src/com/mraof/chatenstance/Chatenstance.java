@@ -34,8 +34,8 @@ public class Chatenstance
 	public int chatDimensionId = 0;
 	private int chatProviderId;
 	private boolean hasMobs;
-	@SidedProxy(clientSide="com.mraof.chatenstance.client.ClientProxy")
-	public static ClientProxy clientProxy;
+	@SidedProxy(clientSide="com.mraof.chatenstance.client.ClientProxy", serverSide="com.mraof.chatenstance.CommonProxy")
+	public static CommonProxy proxy;
 
 	@EventHandler 
 	public void preInit(FMLPreInitializationEvent event)

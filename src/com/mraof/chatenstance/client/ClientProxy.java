@@ -2,6 +2,7 @@ package com.mraof.chatenstance.client;
 
 import net.minecraft.client.model.ModelBiped;
 
+import com.mraof.chatenstance.CommonProxy;
 import com.mraof.chatenstance.client.model.ModelSandwormBody;
 import com.mraof.chatenstance.client.model.ModelSandwormHead;
 import com.mraof.chatenstance.client.renderer.entity.RenderMummy;
@@ -17,7 +18,7 @@ import cpw.mods.fml.client.registry.RenderingRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class ClientProxy
+public class ClientProxy extends CommonProxy
 {
 	@SideOnly(Side.CLIENT)
 	public static void registerRenderers()
