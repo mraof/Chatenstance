@@ -5,16 +5,19 @@ import java.util.ArrayList;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.EntityLiving;
+import net.minecraft.entity.ai.EntityAIAttackOnCollide;
 import net.minecraft.entity.ai.EntityAIHurtByTarget;
 import net.minecraft.entity.ai.EntityAISwimming;
 import net.minecraft.entity.ai.EntityAIWander;
 import net.minecraft.entity.ai.EntityAIWatchClosest;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
 
 public class EntitySandwormHead extends EntityCreature
 {
 	public ArrayList<EntityLiving> parts = new ArrayList<EntityLiving>();
+	public EntityAIAttackOnCollide entityAIAttackOnCollide = new EntityAIAttackOnCollide(this, .4F, false);
 
 	public EntitySandwormHead(World world)
 	{
@@ -31,6 +34,17 @@ public class EntitySandwormHead extends EntityCreature
 		this.targetTasks.addTask(1, new EntityAIHurtByTarget(this, false));
 		this.tasks.addTask(5, new EntityAIWander(this, 0.3F));
 		this.tasks.addTask(6, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0F));
+				
+		if (world != null && !world.isRemote)
+		{
+			this.setCombatTask();
+		};
+	}
+
+	@Override
+	public boolean isAIEnabled()
+	{
+		return true;
 	}
 
 	@Override
@@ -38,6 +52,20 @@ public class EntitySandwormHead extends EntityCreature
 	{
 		super.onEntityUpdate();
 		this.updatePartPositions();
+	}
+	
+	@Override
+	public boolean attackEntityAsMob(Entity entity)
+	{
+		return entity.attackEntityFrom(DamageSource.causeMobDamage(this), 6);
+	}
+
+	protected void setCombatTask()
+	{
+		if(entityAIAttackOnCollide == null)
+			entityAIAttackOnCollide = new EntityAIAttackOnCollide(this, .4F, false);
+		this.tasks.removeTask(this.entityAIAttackOnCollide);
+		this.tasks.addTask(4, entityAIAttackOnCollide);
 	}
 
 	@Override 
@@ -63,7 +91,6 @@ public class EntitySandwormHead extends EntityCreature
 	public void updatePartPositions()
 	{
 		EntityLiving previousPart = this;
-		System.out.printf("Head: %.3f %.3f %.3f\n", this.posX, this.posY, this.posZ);
 		for(int i = 1; i < parts.size(); i++)
 		{
 			EntityLiving part = parts.get(i);
@@ -72,7 +99,6 @@ public class EntitySandwormHead extends EntityCreature
 			double diffZ = part.posZ - previousPart.posZ;
 			double ratio = part.width / Math.sqrt(diffX * diffX + diffY * diffY + diffZ * diffZ);
 			part.setPosition(previousPart.posX + diffX * ratio, previousPart.posY + diffY * ratio, previousPart.posZ + diffZ * ratio);
-			System.out.printf("%d: %.3f %.3f %.3f\n", i, part.posX, part.posY, part.posZ);
 			previousPart = part;
 		}
 	}

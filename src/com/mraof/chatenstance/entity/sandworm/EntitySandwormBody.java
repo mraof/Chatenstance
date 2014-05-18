@@ -40,13 +40,6 @@ public class EntitySandwormBody extends EntityLiving
 			this.setDead();
 		}
 	}
-	//@Override
-	//public void setDead()
-	//{
-	//	super.setDead();
-	//	if(this.head != null && !this.head.isDead)
-	//		head.setDead();
-	//}
 	
 	@Override
 	public boolean isEntityEqual(Entity entity)
