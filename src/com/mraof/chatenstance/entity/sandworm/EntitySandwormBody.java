@@ -7,6 +7,8 @@ public class EntitySandwormBody extends EntitySandwormPart
 	public EntitySandwormBody(World world)
 	{
 		super(world);
+		//if(!worldObj.isRemote && head == null)
+			//this.setDead();
 	}
 
 	public EntitySandwormBody(World world, EntitySandwormHead entitySandwormHead, int place)

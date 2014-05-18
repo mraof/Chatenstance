@@ -22,15 +22,13 @@ public abstract class EntitySandwormPart extends EntityCreature
 	}
 	protected void collideWithEntity(Entity par1Entity)
 	{
-		if(head != null && !head.parts.contains(par1Entity))
+		if(head == null || !head.parts.contains(par1Entity))
 			par1Entity.applyEntityCollision(this);
 	}
 
 	public void onEntityUpdate()
 	{
 		super.onEntityUpdate();
-		if(!worldObj.isRemote && head == null)
-			this.setDead();
 	}
 
 	public void updatePartPosition() 
