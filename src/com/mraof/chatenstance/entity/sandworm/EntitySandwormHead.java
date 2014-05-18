@@ -1,4 +1,4 @@
-package com.mraof.chatenstance.client.renderer.entity.sandworm;
+package com.mraof.chatenstance.entity.sandworm;
 
 import java.util.ArrayList;
 
