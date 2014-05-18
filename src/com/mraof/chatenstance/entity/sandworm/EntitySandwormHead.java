@@ -44,8 +44,10 @@ public class EntitySandwormHead extends EntitySandwormPart
 		return true;
 	}
 	@Override
-	public void damageEntity(DamageSource source, float damage)
+	public boolean attackEntityFrom(DamageSource source, float damage)
 	{
-		
+		if(!source.equals(DamageSource.inWall))
+			return super.attackEntityFrom(source, damage);
+		return false;
 	}
 }	
