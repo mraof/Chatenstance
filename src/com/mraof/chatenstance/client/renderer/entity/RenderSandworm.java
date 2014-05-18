@@ -7,10 +7,10 @@ import net.minecraft.util.ResourceLocation;
 
 import com.mraof.chatenstance.client.model.ModelSandwormBody;
 
-public class RenderSandwormBody extends RenderLiving
+public class RenderSandworm extends RenderLiving
 {
 	ResourceLocation bodyTexture = new ResourceLocation("chatenstance", "textures/mobs/SandwormBody.png");
-	public RenderSandwormBody()
+	public RenderSandworm()
 	{
 		super((ModelBase) new ModelSandwormBody(), 2.0F);
 	}
