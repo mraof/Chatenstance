@@ -11,7 +11,6 @@ public abstract class EntitySandwormPart extends EntityCreature
 	public EntitySandwormPart(World world)
 	{
 		super(world);
-		this.setSize(2.0F, 2.0F);
 		place = 0;
 	}
 
