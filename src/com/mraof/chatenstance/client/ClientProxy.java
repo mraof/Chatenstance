@@ -3,6 +3,7 @@ package com.mraof.chatenstance.client;
 import net.minecraft.client.model.ModelBiped;
 
 import com.mraof.chatenstance.client.renderer.entity.RenderMummy;
+import com.mraof.chatenstance.client.renderer.entity.RenderSandwormBody;
 import com.mraof.chatenstance.client.renderer.tileentity.RenderChatBox;
 import com.mraof.chatenstance.entity.EntityMummy;
 import com.mraof.chatenstance.entity.sandworm.EntitySandwormBody;
@@ -21,7 +22,7 @@ public class ClientProxy
 	{
 		RenderingRegistry.registerEntityRenderingHandler(EntityMummy.class, new RenderMummy(new ModelBiped()));
 		RenderingRegistry.registerEntityRenderingHandler(EntitySandwormHead.class, new RenderMummy(new ModelBiped()));
-		RenderingRegistry.registerEntityRenderingHandler(EntitySandwormBody.class, new RenderMummy(new ModelBiped()));
+		RenderingRegistry.registerEntityRenderingHandler(EntitySandwormBody.class, new RenderSandwormBody());
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityChatBox.class, new RenderChatBox());
 	}
 }
