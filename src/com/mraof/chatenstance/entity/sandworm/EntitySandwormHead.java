@@ -30,4 +30,10 @@ public class EntitySandwormHead extends EntitySandwormPart
 		return entityLivingData;
 
 	}
+	public void onEntityUpdate()
+	{
+		super.onEntityUpdate();
+		for(int i = 1; i < parts.size(); i++)
+			head.parts.get(i).updatePartPosition();
+	}
 }	

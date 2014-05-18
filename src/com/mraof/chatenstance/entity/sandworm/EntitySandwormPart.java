@@ -11,6 +11,7 @@ public abstract class EntitySandwormPart extends EntityCreature
 	public EntitySandwormPart(World world)
 	{
 		super(world);
+		this.setSize(2.0F, 2.0F);
 		place = 0;
 	}
 
@@ -25,21 +26,9 @@ public abstract class EntitySandwormPart extends EntityCreature
 			par1Entity.applyEntityCollision(this);
 	}
 
-	public void onEntityUpdate()
-	{
-		super.onEntityUpdate();
-		if(head == null || head.isDead)
-		{
-			//this.setDead();
-			return;
-		}
-		if(head.parts.size() > place + 1)
-			head.parts.get(place + 1).updatePartPosition();
-	}
 
 	public void updatePartPosition() 
 	{
-		System.out.println(this.place + ": " + this.posX + " " + this.posY + " " + this.posZ);
 		if(this.place > 0)
 		{
 			EntitySandwormPart part = head.parts.get(place - 1);
