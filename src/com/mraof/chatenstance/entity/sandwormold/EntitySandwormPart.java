@@ -1,10 +1,10 @@
 package com.mraof.chatenstance.entity.sandworm;
 
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityCreature;
+import net.minecraft.entity.EntityLiving;
 import net.minecraft.world.World;
 
-public abstract class EntitySandwormPart extends EntityCreature
+public abstract class EntitySandwormPart extends EntityLiving
 {
 	public EntitySandwormHead head;
 	int place;

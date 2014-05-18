@@ -2,6 +2,7 @@ package com.mraof.chatenstance.entity.sandworm;
 
 import java.util.ArrayList;
 
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.IEntityLivingData;
 import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
@@ -50,5 +51,10 @@ public class EntitySandwormHead extends EntitySandwormPart
 		if(!source.equals(DamageSource.inWall))
 			return super.attackEntityFrom(source, damage);
 		return true;
+	}
+	@Override
+	public Entity[] getParts()
+	{
+		return parts.toArray(new Entity[parts.size()]);
 	}
 }	

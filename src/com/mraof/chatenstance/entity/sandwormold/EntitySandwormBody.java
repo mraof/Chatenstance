@@ -37,6 +37,10 @@ public class EntitySandwormBody extends EntitySandwormPart
 		}
 		else
 			System.out.printf("%d: %f %f %f\n", this.place, this.posX, this.posY, this.posZ);
-
+	}
+	@Override 
+	protected boolean canDespawn()
+	{
+		return false;
 	}
 }	
