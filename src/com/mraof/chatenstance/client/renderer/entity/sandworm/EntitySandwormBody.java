@@ -11,10 +11,9 @@ public class EntitySandwormBody extends EntitySandwormPart {
 	{
 		super(world);
 	}
-	public void onEntityUpdate()
-	{
-		super.onEntityUpdate();
-		if(head.parts.size() > place + 1)
-			head.parts.get(place + 1).updatePartPosition();
+
+	public EntitySandwormBody(World world,
+			EntitySandwormHead entitySandwormHead, int size) {
+		// TODO Auto-generated constructor stub
 	}
 }	

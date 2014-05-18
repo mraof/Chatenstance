@@ -25,8 +25,26 @@ public abstract class EntitySandwormPart extends EntityCreature
 			par1Entity.applyEntityCollision(this);
 	}
 
-	public void updatePartPosition() {
-		// TODO Auto-generated method stub
-		
+	public void onEntityUpdate()
+	{
+		super.onEntityUpdate();
+		if(head.parts.size() > place + 1)
+			head.parts.get(place + 1).updatePartPosition();
+	}
+
+	public void updatePartPosition() 
+	{
+		if(this.place > 0)
+		{
+			EntitySandwormPart part = head.parts.get(place - 1);
+			double diffX = part.posX - this.posX;
+			double diffY = part.posY - this.posY;
+			double diffZ = part.posZ - this.posZ;
+			double total = Math.abs(diffX) + Math.abs(diffY) + Math.abs(diffZ);
+			this.posX = this.width * (total / diffX);
+			this.posY = this.width * (total / diffY);
+			this.posZ = this.width * (total / diffZ);
+		}
+
 	}
 }
