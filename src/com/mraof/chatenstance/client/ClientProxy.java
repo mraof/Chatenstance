@@ -2,8 +2,10 @@ package com.mraof.chatenstance.client;
 
 import net.minecraft.client.model.ModelBiped;
 
+import com.mraof.chatenstance.client.model.ModelSandwormBody;
+import com.mraof.chatenstance.client.model.ModelSandwormHead;
 import com.mraof.chatenstance.client.renderer.entity.RenderMummy;
-import com.mraof.chatenstance.client.renderer.entity.RenderSandwormBody;
+import com.mraof.chatenstance.client.renderer.entity.RenderSandworm;
 import com.mraof.chatenstance.client.renderer.tileentity.RenderChatBox;
 import com.mraof.chatenstance.entity.EntityMummy;
 import com.mraof.chatenstance.entity.sandworm.EntitySandwormBody;
@@ -21,8 +23,8 @@ public class ClientProxy
 	public static void registerRenderers()
 	{
 		RenderingRegistry.registerEntityRenderingHandler(EntityMummy.class, new RenderMummy(new ModelBiped()));
-		RenderingRegistry.registerEntityRenderingHandler(EntitySandwormHead.class, new RenderSandwormBody());
-		RenderingRegistry.registerEntityRenderingHandler(EntitySandwormBody.class, new RenderSandwormBody());
+		RenderingRegistry.registerEntityRenderingHandler(EntitySandwormHead.class, new RenderSandworm(new ModelSandwormHead()));
+		RenderingRegistry.registerEntityRenderingHandler(EntitySandwormBody.class, new RenderSandworm(new ModelSandwormBody()));
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityChatBox.class, new RenderChatBox());
 	}
 }

@@ -10,9 +10,9 @@ import com.mraof.chatenstance.client.model.ModelSandwormBody;
 public class RenderSandworm extends RenderLiving
 {
 	ResourceLocation bodyTexture = new ResourceLocation("chatenstance", "textures/mobs/SandwormBody.png");
-	public RenderSandworm()
+	public RenderSandworm(ModelBase model)
 	{
-		super((ModelBase) new ModelSandwormBody(), 2.0F);
+		super(model, 2.0F);
 	}
 
 	@Override
