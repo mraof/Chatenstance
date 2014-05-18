@@ -13,15 +13,12 @@ public class RenderSandwormBody extends RenderLiving
 	public RenderSandwormBody()
 	{
 		super((ModelBase) new ModelSandwormBody(), 2.0F);
+		System.out.println("RenderSandwormBody");
 	}
 
 	@Override
-	public void doRender(Entity var1, double var2, double var4, double var6, float var8, float var9) {
-
-	}
-
-	@Override
-	protected ResourceLocation getEntityTexture(Entity var1) {
+	protected ResourceLocation getEntityTexture(Entity var1) 
+	{
 		return bodyTexture;
 	}
 }

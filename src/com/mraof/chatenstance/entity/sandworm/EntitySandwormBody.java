@@ -2,7 +2,8 @@ package com.mraof.chatenstance.entity.sandworm;
 
 import net.minecraft.world.World;
 
-public class EntitySandwormBody extends EntitySandwormPart {
+public class EntitySandwormBody extends EntitySandwormPart 
+{
 	public EntitySandwormBody(World world)
 	{
 		super(world);
