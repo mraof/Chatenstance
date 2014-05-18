@@ -21,6 +21,7 @@ import com.mraof.chatenstance.world.WorldProviderChatland;
 
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
+import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.registry.EntityRegistry;
@@ -33,6 +34,9 @@ public class Chatenstance
 	public int chatDimensionId = 0;
 	private int chatProviderId;
 	private boolean hasMobs;
+	@SidedProxy(clientSide="com.mraof.chatenstance.client.ClientProxy")
+	public static ClientProxy clientProxy;
+
 	@EventHandler 
 	public void preInit(FMLPreInitializationEvent event)
 	{

@@ -13,7 +13,6 @@ public class RenderSandwormBody extends RenderLiving
 	public RenderSandwormBody()
 	{
 		super((ModelBase) new ModelSandwormBody(), 2.0F);
-		System.out.println("RenderSandwormBody");
 	}
 
 	@Override
