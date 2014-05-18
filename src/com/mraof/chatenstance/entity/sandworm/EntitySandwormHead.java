@@ -22,14 +22,16 @@ public class EntitySandwormHead extends EntityCreature implements IMob
 	public ArrayList<EntityLiving> parts = new ArrayList<EntityLiving>();
 	public EntityAIAttackOnCollide entityAIAttackOnCollide = new EntityAIAttackOnCollide(this, 0.8F, false);
 	int size;
-	public float sizeSingle = 4F;
+	public float sizeSingle = 2F;
+	Random rand = new Random();
 
 	public EntitySandwormHead(World world)
 	{
 		super(world);
+		sizeSingle = rand.nextInt(4) + 1;
 		this.setSize(sizeSingle, sizeSingle);
 		parts.add(this);
-		size = (new Random()).nextInt(8) + 7;
+		size = rand.nextInt(8) + 7;
 		this.stepHeight = 1.0F;
 		for(int i = 1; i < size; i++)
 		{
@@ -133,7 +135,7 @@ public class EntitySandwormHead extends EntityCreature implements IMob
 		super.readFromNBT(tagCompound);
 		this.sizeSingle = tagCompound.getFloat("Width");
 		if(this.sizeSingle == 0)
-			this.sizeSingle = 2F;
+			sizeSingle = rand.nextInt(4) + 1;
 		for(int i = 1; i < parts.size(); i++)
 			((EntitySandwormBody)parts.get(i)).setWidth(sizeSingle);
 	}

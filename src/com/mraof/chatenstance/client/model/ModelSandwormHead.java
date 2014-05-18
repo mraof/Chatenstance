@@ -23,7 +23,7 @@ public class ModelSandwormHead extends ModelBase {
 	public void render(Entity entity, float par2, float par3, float par4, float par5, float par6, float par7)
 	{
 		GL11.glPushMatrix();
-		GL11.glTranslatef(0.0F, -par7 * entity.width / 2.0F, 0.0F);
+		GL11.glTranslatef(0.0F, par7 - entity.width / 2.0F, 0.0F);
 		this.segment.render(par7 * entity.width / 2.0F);
 		GL11.glPopMatrix();
 	}

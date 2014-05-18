@@ -24,7 +24,8 @@ public class ModelSandwormBody extends ModelBase
 	public void render(Entity entity, float par2, float par3, float par4, float par5, float par6, float par7)
 	{
 		GL11.glPushMatrix();
-		GL11.glTranslatef(0.0F, -par7 * entity.width / 2.0F, 0.0F);
+		System.out.println(par7);
+		GL11.glTranslatef(0.0F, par7 - entity.width / 2.0F, 0.0F);
 		this.setRotationAngles(par2, par3, par4, par5, par6, par7, entity);
 		this.segment.render(par7 * entity.width / 2.0F);
 		GL11.glPopMatrix();
@@ -34,6 +35,6 @@ public class ModelSandwormBody extends ModelBase
 	public void setRotationAngles(float par1, float par2, float par3, float par4, float par5, float par6, Entity entity)
 	{
 		this.segment.rotateAngleX = -entity.rotationPitch;
-		this.segment.rotateAngleY = -entity.rotationYaw;
+		//this.segment.rotateAngleY = -entity.rotationYaw; //Gets really glitchy at some angles
 	}
 }
