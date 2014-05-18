@@ -127,10 +127,10 @@ public class Chatenstance
 		}
 		if(hasMobs)
 		{
-			EntityList.addMapping(EntityMummy.class, "Mummy", 0, 0xE1DD9A, 0x536b51);
+			EntityList.addMapping(EntityMummy.class, "Mummy", 1800, 0xE1DD9A, 0x536b51);
 			EntityRegistry.registerModEntity(EntityMummy.class, "Mummy", 0, this, 80, 3, true);
-			EntityList.addMapping(EntitySandwormHead.class, "Sandworm", 0, 0xC5C690, 0xDEEDA0);
-			EntityRegistry.registerModEntity(EntitySandwormHead.class, "Sandworm", 0, this, 80, 3, true);
+			EntityList.addMapping(EntitySandwormHead.class, "Sandworm", 1801, 0xC5C690, 0xDEEDA0);
+			EntityRegistry.registerModEntity(EntitySandwormHead.class, "Sandworm", 1, this, 80, 3, true);
 		}
 	}
 }
