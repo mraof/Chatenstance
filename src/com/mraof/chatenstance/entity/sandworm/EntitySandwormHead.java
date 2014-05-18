@@ -3,6 +3,7 @@ package com.mraof.chatenstance.entity.sandworm;
 import java.util.ArrayList;
 
 import net.minecraft.entity.IEntityLivingData;
+import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
 
 public class EntitySandwormHead extends EntitySandwormPart
@@ -41,5 +42,10 @@ public class EntitySandwormHead extends EntitySandwormPart
 	public boolean isAIEnabled()
 	{
 		return true;
+	}
+	@Override
+	public void damageEntity(DamageSource source, float damage)
+	{
+		
 	}
 }	
