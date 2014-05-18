@@ -22,7 +22,7 @@ public class EntitySandwormHead extends EntitySandwormPart
 		if(!worldObj.isRemote)
 			for(int i = 0; i < 8; i++)
 			{
-				EntitySandwormBody body = new EntitySandwormBody(this.worldObj, this, i + 1);
+				EntitySandwormBody body = new EntitySandwormBody(this.worldObj, this, i + 2);
 				body.setPosition(this.posX + i + 1, this.posY, this.posZ);
 				this.worldObj.spawnEntityInWorld(body);
 				parts.add(body);
@@ -30,10 +30,16 @@ public class EntitySandwormHead extends EntitySandwormPart
 		return entityLivingData;
 
 	}
+	@Override
 	public void onEntityUpdate()
 	{
 		super.onEntityUpdate();
 		for(int i = 1; i < parts.size(); i++)
 			head.parts.get(i).updatePartPosition();
+	}
+	@Override
+	public boolean isAIEnabled()
+	{
+		return true;
 	}
 }	

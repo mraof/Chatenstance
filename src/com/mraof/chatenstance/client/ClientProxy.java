@@ -6,6 +6,7 @@ import com.mraof.chatenstance.client.renderer.entity.RenderMummy;
 import com.mraof.chatenstance.client.renderer.tileentity.RenderChatBox;
 import com.mraof.chatenstance.entity.EntityMummy;
 import com.mraof.chatenstance.entity.sandworm.EntitySandwormBody;
+import com.mraof.chatenstance.entity.sandworm.EntitySandwormHead;
 import com.mraof.chatenstance.tileentity.TileEntityChatBox;
 
 import cpw.mods.fml.client.registry.ClientRegistry;
@@ -19,7 +20,8 @@ public class ClientProxy
 	public static void registerRenderers()
 	{
 		RenderingRegistry.registerEntityRenderingHandler(EntityMummy.class, new RenderMummy(new ModelBiped()));
-		//RenderingRegistry.registerEntityRenderingHandler(EntitySandwormBody.class, new RenderMummy(new ModelBiped()));
+		RenderingRegistry.registerEntityRenderingHandler(EntitySandwormHead.class, new RenderMummy(new ModelBiped()));
+		RenderingRegistry.registerEntityRenderingHandler(EntitySandwormBody.class, new RenderMummy(new ModelBiped()));
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityChatBox.class, new RenderChatBox());
 	}
 }
