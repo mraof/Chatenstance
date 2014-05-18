@@ -5,8 +5,6 @@ import net.minecraft.entity.EntityLiving;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
 
-import com.mraof.chatenstance.entity.sandwormold.EntitySandwormHead;
-
 public class EntitySandwormBody extends EntityLiving
 {
 	public EntitySandwormHead head;
@@ -17,10 +15,10 @@ public class EntitySandwormBody extends EntityLiving
 		super(world);
 	}
 
-	public EntitySandwormBody(EntitySandwormHead head, int place)
+	public EntitySandwormBody(EntitySandwormHead entitySandwormHead, int place)
 	{
-		super(head.worldObj);
-		this.head = head;
+		super(entitySandwormHead.worldObj);
+		this.head = entitySandwormHead;
 		this.place = place;
 	}
 
