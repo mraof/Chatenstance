@@ -22,7 +22,7 @@ public class ClientProxy
 	{
 		RenderingRegistry.registerEntityRenderingHandler(EntityMummy.class, new RenderMummy(new ModelBiped()));
 		RenderingRegistry.registerEntityRenderingHandler(EntitySandwormHead.class, new RenderSandwormBody());
-		RenderingRegistry.registerEntityRenderingHandler(EntitySandwormBody.class, new RenderMummy(new ModelBiped()));
+		RenderingRegistry.registerEntityRenderingHandler(EntitySandwormBody.class, new RenderSandwormBody());
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityChatBox.class, new RenderChatBox());
 	}
 }

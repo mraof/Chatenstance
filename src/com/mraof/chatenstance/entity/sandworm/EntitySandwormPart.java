@@ -11,6 +11,7 @@ public abstract class EntitySandwormPart extends EntityCreature
 	public EntitySandwormPart(World world)
 	{
 		super(world);
+		this.setSize(2.0F, 2.0F);
 		place = 0;
 	}
 
@@ -28,7 +29,7 @@ public abstract class EntitySandwormPart extends EntityCreature
 	public void onEntityUpdate()
 	{
 		super.onEntityUpdate();
-		if(head == null || head.isDead)
+		if(!worldObj.isRemote && head == null)
 			this.setDead();
 	}
 
@@ -46,5 +47,11 @@ public abstract class EntitySandwormPart extends EntityCreature
 			this.posZ = part.posZ + diffZ * ratio;
 		}
 
+	}
+	@Override
+	public void setDead()
+	{
+		super.setDead();
+		System.out.println(place + " died");
 	}
 }
