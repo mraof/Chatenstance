@@ -25,6 +25,12 @@ public abstract class EntitySandwormPart extends EntityCreature
 			par1Entity.applyEntityCollision(this);
 	}
 
+	public void onEntityUpdate()
+	{
+		super.onEntityUpdate();
+		if(head == null || head.isDead)
+			this.setDead();
+	}
 
 	public void updatePartPosition() 
 	{

@@ -23,7 +23,7 @@ public class EntitySandwormHead extends EntitySandwormPart
 		if(!worldObj.isRemote)
 			for(int i = 0; i < 8; i++)
 			{
-				EntitySandwormBody body = new EntitySandwormBody(this.worldObj, this, i + 2);
+				EntitySandwormBody body = new EntitySandwormBody(this.worldObj, this, i + 1);
 				body.setPosition(this.posX + i + 1, this.posY, this.posZ);
 				this.worldObj.spawnEntityInWorld(body);
 				parts.add(body);
@@ -48,6 +48,6 @@ public class EntitySandwormHead extends EntitySandwormPart
 	{
 		if(!source.equals(DamageSource.inWall))
 			return super.attackEntityFrom(source, damage);
-		return false;
+		return true;
 	}
 }	
