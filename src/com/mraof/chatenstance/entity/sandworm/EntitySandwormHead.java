@@ -18,7 +18,7 @@ import net.minecraft.world.World;
 public class EntitySandwormHead extends EntityCreature implements IMob
 {
 	public ArrayList<EntityLiving> parts = new ArrayList<EntityLiving>();
-	public EntityAIAttackOnCollide entityAIAttackOnCollide = new EntityAIAttackOnCollide(this, .4F, false);
+	public EntityAIAttackOnCollide entityAIAttackOnCollide = new EntityAIAttackOnCollide(this, 0.9F, false);
 
 	public EntitySandwormHead(World world)
 	{
@@ -33,7 +33,7 @@ public class EntitySandwormHead extends EntityCreature implements IMob
 		}
 		this.tasks.addTask(1, new EntityAISwimming(this));
 		this.targetTasks.addTask(1, new EntityAIHurtByTarget(this, false));
-		this.tasks.addTask(5, new EntityAIWander(this, 0.3F));
+		this.tasks.addTask(5, new EntityAIWander(this, 0.6F));
 		this.tasks.addTask(6, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0F));
 				
 		if (world != null && !world.isRemote)
@@ -64,7 +64,7 @@ public class EntitySandwormHead extends EntityCreature implements IMob
 	protected void setCombatTask()
 	{
 		if(entityAIAttackOnCollide == null)
-			entityAIAttackOnCollide = new EntityAIAttackOnCollide(this, .4F, false);
+			entityAIAttackOnCollide = new EntityAIAttackOnCollide(this, 0.9F, false);
 		this.tasks.removeTask(this.entityAIAttackOnCollide);
 		this.tasks.addTask(4, entityAIAttackOnCollide);
 	}
@@ -98,7 +98,7 @@ public class EntitySandwormHead extends EntityCreature implements IMob
 			double diffX = part.posX - previousPart.posX;
 			double diffY = part.posY - previousPart.posY;
 			double diffZ = part.posZ - previousPart.posZ;
-			double ratio = (part.width / 2) / Math.sqrt(diffX * diffX + diffY * diffY + diffZ * diffZ);
+			double ratio = (part.width - 0.5) / Math.sqrt(diffX * diffX + diffY * diffY + diffZ * diffZ);
 			
 			double destX = previousPart.posX + diffX * ratio;
 			double destY = previousPart.posY + diffY * ratio; 
