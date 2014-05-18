@@ -21,7 +21,7 @@ public abstract class EntitySandwormPart extends EntityCreature
 	}
 	protected void collideWithEntity(Entity par1Entity)
 	{
-		if(!head.parts.contains(par1Entity))
+		if(head != null && !head.parts.contains(par1Entity))
 			par1Entity.applyEntityCollision(this);
 	}
 
