@@ -28,6 +28,7 @@ public class EntitySandwormHead extends EntityCreature implements IMob
 		this.setSize(2F, 2F);
 		parts.add(this);
 		size = (new Random()).nextInt(8) + 7;
+		this.stepHeight = 1.0F;
 		for(int i = 1; i < size; i++)
 		{
 			EntitySandwormBody body = new EntitySandwormBody(this, i);
@@ -83,6 +84,14 @@ public class EntitySandwormHead extends EntityCreature implements IMob
 	{
 		if(!parts.contains(entity))
 			super.collideWithEntity(entity);
+	}
+	
+	@Override
+	public boolean attackEntityFrom(DamageSource source, float damage)
+	{
+		for(int i = 1; i < parts.size(); i++)
+			parts.get(i).attackEntityFrom(source, damage);
+		return super.attackEntityFrom(source, damage);
 	}
 
 	@Override
