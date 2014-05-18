@@ -1,4 +1,4 @@
-package com.mraof.chatenstance.client.renderer.entity.sandworm;
+package com.mraof.chatenstance.entity.sandworm;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityCreature;
@@ -42,18 +42,11 @@ public abstract class EntitySandwormPart extends EntityCreature
 		if(this.place > 0)
 		{
 			EntitySandwormPart part = head.parts.get(place - 1);
-			this.posX = part.posX + 1;
-			this.posY = part.posY;
-			this.posZ = part.posZ;
-			//double diffX = part.posX - this.posX;
-			//double diffY = part.posY - this.posY;
-			//double diffZ = part.posZ - this.posZ;
-			//double total = Math.abs(diffX) + Math.abs(diffY) + Math.abs(diffZ);
-			System.out.println(this.posX + " " + this.posY + " " + this.posZ);
-			//this.posX = this.width * (total / diffX);
-			//this.posY = this.width * (total / diffY);
-			//this.posZ = this.width * (total / diffZ);
-			//System.out.println(" > " + this.posX + " " + this.posY + " " + this.posZ);
+			double diffX = this.posX - part.posX;
+			double diffY = this.posY - part.posY;
+			double diffZ = this.posZ - part.posZ;
+			double ratio = Math.sqrt(diffX * diffX + diffY * diffY + diffZ * diffZ);
+
 		}
 
 	}
