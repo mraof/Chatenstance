@@ -39,6 +39,7 @@ public abstract class EntitySandwormPart extends EntityCreature
 
 	public void updatePartPosition() 
 	{
+		System.out.println(this.place + ": " + this.posX + " " + this.posY + " " + this.posZ);
 		if(this.place > 0)
 		{
 			EntitySandwormPart part = head.parts.get(place - 1);
@@ -49,7 +50,6 @@ public abstract class EntitySandwormPart extends EntityCreature
 			this.posX = part.posX + diffX * ratio;
 			this.posY = part.posY + diffY * ratio;
 			this.posZ = part.posZ + diffZ * ratio;
-			System.out.println(this.place + ": " + this.posX + " " + this.posY + " " + this.posZ);
 		}
 
 	}

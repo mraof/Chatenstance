@@ -21,7 +21,7 @@ public class EntitySandwormHead extends EntitySandwormPart
 		entityLivingData = super.onSpawnWithEgg(entityLivingData);
 		for(int i = 0; i < 8; i++)
 		{
-			EntitySandwormBody body = new EntitySandwormBody(this.worldObj, this, parts.size());
+			EntitySandwormBody body = new EntitySandwormBody(this.worldObj, this, i + 1);
 			body.setPosition(this.posX + i, this.posY, this.posZ);
 			this.worldObj.spawnEntityInWorld(body);
 			parts.add(body);
