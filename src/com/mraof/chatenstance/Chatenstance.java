@@ -33,7 +33,7 @@ public class Chatenstance
 	public static ChatParser chatParser;
 	public int chatDimensionId = 0;
 	private int chatProviderId;
-	private boolean hasMobs;
+	public static boolean hasMobs;
 	@SidedProxy(clientSide="com.mraof.chatenstance.client.ClientProxy", serverSide="com.mraof.chatenstance.CommonProxy")
 	public static CommonProxy proxy;
 
@@ -78,9 +78,9 @@ public class Chatenstance
 			MagicWords magicWords = new MagicWords();
 			magicWords.effectWords.put(config.get("MagicWords", "Speed", "vroom").getString().toLowerCase(), 1);
 			magicWords.effectWords.put(config.get("MagicWords", "Slow", "hurry").getString().toLowerCase(), 2);
-			magicWords.effectWords.put(config.get("MagicWords", "Digfast", "light").getString().toLowerCase(), 3);
-			magicWords.effectWords.put(config.get("MagicWords", "Digslow", "heavy").getString().toLowerCase(), 4);
-			magicWords.effectWords.put(config.get("MagicWords", "Strength", "mighty").getString().toLowerCase(), 5);
+			magicWords.effectWords.put(config.get("MagicWords", "Digfast", "giga drill breaker").getString().toLowerCase(), 3);
+			magicWords.effectWords.put(config.get("MagicWords", "Digslow", "a lifetime in prison").getString().toLowerCase(), 4);
+			magicWords.effectWords.put(config.get("MagicWords", "Strength", "I am mighty").getString().toLowerCase(), 5);
 			magicWords.effectWords.put(config.get("MagicWords", "Jump", "boing").getString().toLowerCase(), 8);
 			magicWords.effectWords.put(config.get("MagicWords", "Confusion", "asdf").getString().toLowerCase(), 9);
 			magicWords.effectWords.put(config.get("MagicWords", "Regen", "curo").getString().toLowerCase(), 10);
