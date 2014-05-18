@@ -28,13 +28,14 @@ public class EntitySandwormHead extends EntityCreature
 	public void onEntityUpdate()
 	{
 		super.onEntityUpdate();
-		this.updatePartPositions();
+		if((this.ticksExisted & 1) == 0)
+			this.updatePartPositions();
 	}
 
 	@Override 
 	public Entity[] getParts()
 	{
-		return parts.asArray(new Entity[parts.size()]);
+		return parts.toArray(new Entity[parts.size()]);
 	}
 
 	@Override
@@ -45,7 +46,7 @@ public class EntitySandwormHead extends EntityCreature
 	}
 
 	@Override
-	public void setPositionAndRotation(double x, double y, double z, double yaw, double pitch)
+	public void setPositionAndRotation(double x, double y, double z, float yaw, float pitch)
 	{
 		super.setPositionAndRotation(x, y, z, yaw, pitch);
 		this.updatePartPositions();
@@ -53,13 +54,15 @@ public class EntitySandwormHead extends EntityCreature
 
 	public void updatePartPositions()
 	{
-		EntityLiving part = this;
-		for(int i = 0; i < 
-				double diffX = this.posX - part.posX;
-				double diffY = this.posY - part.posY;
-				double diffZ = this.posZ - part.posZ;
-				double ratio = this.width / Math.sqrt(diffX * diffX + diffY * diffY + diffZ * diffZ);
-				this.setPosition(part.posX + diffX * ratio, part.posY + diffY * ratio, part.posZ + diffZ * ratio);
+		for(int i = 0; i < parts.size(); i++)
+		{
+			EntityLiving part = parts.get(i);
+			double diffX = this.posX - part.posX;
+			double diffY = this.posY - part.posY;
+			double diffZ = this.posZ - part.posZ;
+			double ratio = this.width / Math.sqrt(diffX * diffX + diffY * diffY + diffZ * diffZ);
+			this.setPosition(part.posX + diffX * ratio, part.posY + diffY * ratio, part.posZ + diffZ * ratio);
+		}
 	}
 
 }

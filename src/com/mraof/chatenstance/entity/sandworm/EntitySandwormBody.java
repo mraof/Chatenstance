@@ -13,11 +13,13 @@ public class EntitySandwormBody extends EntityLiving
 	public EntitySandwormBody(World world)
 	{
 		super(world);
+		this.setSize(2F, 2F);
 	}
 
 	public EntitySandwormBody(EntitySandwormHead entitySandwormHead, int place)
 	{
 		super(entitySandwormHead.worldObj);
+		this.setSize(2F, 2F);
 		this.head = entitySandwormHead;
 		this.place = place;
 	}
