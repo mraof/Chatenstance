@@ -13,7 +13,7 @@ public class ModelSandwormBody extends ModelBase
 		float offsetY = -32 + 24;
 		segment = new ModelRenderer(this, 0, 0);
 		segment.addBox(-16F, -16F, -16F, 32, 32, 32);
-		segment.setRotationPoint(0F, offsetY, 0F);
+		segment.setRotationPoint(0F, offsetY - 16F, 0F);
 	}
 
 	@Override
