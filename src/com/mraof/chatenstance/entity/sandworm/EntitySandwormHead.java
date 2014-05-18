@@ -1,6 +1,7 @@
 package com.mraof.chatenstance.entity.sandworm;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityCreature;
@@ -18,14 +19,16 @@ import net.minecraft.world.World;
 public class EntitySandwormHead extends EntityCreature implements IMob
 {
 	public ArrayList<EntityLiving> parts = new ArrayList<EntityLiving>();
-	public EntityAIAttackOnCollide entityAIAttackOnCollide = new EntityAIAttackOnCollide(this, 0.9F, false);
+	public EntityAIAttackOnCollide entityAIAttackOnCollide = new EntityAIAttackOnCollide(this, 0.8F, false);
+	int size;
 
 	public EntitySandwormHead(World world)
 	{
 		super(world);
 		this.setSize(2F, 2F);
 		parts.add(this);
-		for(int i = 1; i < 9; i++)
+		size = (new Random()).nextInt(8) + 7;
+		for(int i = 1; i < size; i++)
 		{
 			EntitySandwormBody body = new EntitySandwormBody(this, i);
 			world.spawnEntityInWorld(body);
@@ -64,7 +67,7 @@ public class EntitySandwormHead extends EntityCreature implements IMob
 	protected void setCombatTask()
 	{
 		if(entityAIAttackOnCollide == null)
-			entityAIAttackOnCollide = new EntityAIAttackOnCollide(this, 0.9F, false);
+			entityAIAttackOnCollide = new EntityAIAttackOnCollide(this, 0.8F, false);
 		this.tasks.removeTask(this.entityAIAttackOnCollide);
 		this.tasks.addTask(4, entityAIAttackOnCollide);
 	}
