@@ -98,7 +98,9 @@ public class EntitySandwormHead extends EntityCreature
 			double diffY = part.posY - previousPart.posY;
 			double diffZ = part.posZ - previousPart.posZ;
 			double ratio = part.width / Math.sqrt(diffX * diffX + diffY * diffY + diffZ * diffZ);
-			part.setPosition(previousPart.posX + diffX * ratio, previousPart.posY + diffY * ratio, previousPart.posZ + diffZ * ratio);
+			
+
+			part.setPositionAndRotation(previousPart.posX + diffX * ratio, previousPart.posY + diffY * ratio, previousPart.posZ + diffZ * ratio, (float) Math.atan2(diffX, diffZ), (float) Math.asin(diffY / Math.sqrt(diffX * diffX + diffZ * diffZ)));
 			previousPart = part;
 		}
 	}
