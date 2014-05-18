@@ -10,6 +10,8 @@ public class ModelSandwormHead extends ModelBase {
 	public ModelSandwormHead()
 	{
 		float offsetY = -16 + 24;
+		this.textureWidth = 128;
+		this.textureHeight = 64;
 		segment = new ModelRenderer(this, 0, 0);
 		segment.addBox(-16F, -16F, -16F, 32, 32, 32);
 		segment.setRotationPoint(0F, offsetY, 0F);

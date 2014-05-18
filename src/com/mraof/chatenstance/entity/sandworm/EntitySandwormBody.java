@@ -8,7 +8,6 @@ import net.minecraft.world.World;
 public class EntitySandwormBody extends EntityLiving
 {
 	public EntitySandwormHead head;
-	int place;
 	
 	public EntitySandwormBody(World world)
 	{
@@ -21,7 +20,6 @@ public class EntitySandwormBody extends EntityLiving
 		super(entitySandwormHead.worldObj);
 		this.setSize(2F, 2F);
 		this.head = entitySandwormHead;
-		this.place = place;
 	}
 
 	@Override
@@ -40,15 +38,6 @@ public class EntitySandwormBody extends EntityLiving
 		if(this.head == null || (this.head).isDead)
 		{
 			this.setDead();
-		}
-		else
-		{
-			EntityLiving part = head.parts.get(place - 1);
-			double diffX = this.posX - part.posX;
-			double diffY = this.posY - part.posY;
-			double diffZ = this.posZ - part.posZ;
-			double ratio = this.width / Math.sqrt(diffX * diffX + diffY * diffY + diffZ * diffZ);
-			this.setPosition(part.posX + diffX * ratio, part.posY + diffY * ratio, part.posZ + diffZ * ratio);
 		}
 	}
 	//@Override

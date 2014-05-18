@@ -54,6 +54,7 @@ public class EntitySandwormHead extends EntityCreature
 	public void updatePartPositions()
 	{
 		EntityLiving previousPart = this;
+		System.out.printf("Head: %.3f %.3f %.3f\n", this.posX, this.posY, this.posZ);
 		for(int i = 1; i < parts.size(); i++)
 		{
 			EntityLiving part = parts.get(i);
@@ -62,6 +63,7 @@ public class EntitySandwormHead extends EntityCreature
 			double diffZ = part.posZ - previousPart.posZ;
 			double ratio = part.width / Math.sqrt(diffX * diffX + diffY * diffY + diffZ * diffZ);
 			part.setPosition(part.posX + diffX * ratio, part.posY + diffY * ratio, part.posZ + diffZ * ratio);
+			System.out.printf("%d: %.3f %.3f %.3f\n", i, part.posX, part.posY, part.posZ);
 			previousPart = part;
 		}
 	}
