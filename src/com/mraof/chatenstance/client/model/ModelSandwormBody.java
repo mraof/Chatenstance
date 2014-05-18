@@ -4,8 +4,6 @@ import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
 
-import org.lwjgl.opengl.GL11;
-
 public class ModelSandwormBody extends ModelBase
 {
 	private ModelRenderer segment;
@@ -23,12 +21,11 @@ public class ModelSandwormBody extends ModelBase
 	@Override
 	public void render(Entity entity, float par2, float par3, float par4, float par5, float par6, float par7)
 	{
-		GL11.glPushMatrix();
-		System.out.println(par7);
-		GL11.glTranslatef(0.0F, par7 - entity.width / 2.0F, 0.0F);
+		//GL11.glPushMatrix();
+		//GL11.glTranslatef(0.0F, -entity.width / 2.0F, 0.0F);
 		this.setRotationAngles(par2, par3, par4, par5, par6, par7, entity);
 		this.segment.render(par7 * entity.width / 2.0F);
-		GL11.glPopMatrix();
+		//GL11.glPopMatrix();
 	}
 	
 	@Override

@@ -28,7 +28,7 @@ public class EntitySandwormHead extends EntityCreature implements IMob
 	public EntitySandwormHead(World world)
 	{
 		super(world);
-		sizeSingle = rand.nextInt(4) + 1;
+		//sizeSingle = rand.nextInt(4) + 1;
 		this.setSize(sizeSingle, sizeSingle);
 		parts.add(this);
 		size = rand.nextInt(8) + 7;
@@ -135,7 +135,8 @@ public class EntitySandwormHead extends EntityCreature implements IMob
 		super.readFromNBT(tagCompound);
 		this.sizeSingle = tagCompound.getFloat("Width");
 		if(this.sizeSingle == 0)
-			sizeSingle = rand.nextInt(4) + 1;
+			//sizeSingle = rand.nextInt(4) + 1;
+		this.setSize(sizeSingle, sizeSingle);
 		for(int i = 1; i < parts.size(); i++)
 			((EntitySandwormBody)parts.get(i)).setWidth(sizeSingle);
 	}
