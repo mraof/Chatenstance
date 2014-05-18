@@ -25,9 +25,7 @@ public class EntitySandwormBody extends EntitySandwormPart
 			if(justSpawned)
 			{
 				this.justSpawned = false;
-				this.posX = head.posX + place;
-				this.posY = head.posY;
-				this.posZ = head.posZ;
+				this.setPosition(head.posX + place, head.posY, head.posZ);
 				System.out.printf("%d: %f %f %f\n", this.place, this.posX, this.posY, this.posZ);
 			}
 			EntitySandwormPart part = head.parts.get(place - 1);
@@ -35,10 +33,10 @@ public class EntitySandwormBody extends EntitySandwormPart
 			double diffY = this.posY - part.posY;
 			double diffZ = this.posZ - part.posZ;
 			double ratio = this.width / Math.sqrt(diffX * diffX + diffY * diffY + diffZ * diffZ);
-			this.posX = part.posX + diffX * ratio;
-			this.posY = part.posY + diffY * ratio;
-			this.posZ = part.posZ + diffZ * ratio;
+			this.setPosition(part.posX + diffX * ratio, part.posY + diffY * ratio, part.posZ + diffZ * ratio);
 		}
+		else
+			System.out.printf("%d: %f %f %f\n", this.place, this.posX, this.posY, this.posZ);
 
 	}
 }	

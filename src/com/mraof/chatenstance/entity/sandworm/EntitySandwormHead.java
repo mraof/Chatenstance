@@ -14,6 +14,12 @@ public class EntitySandwormHead extends EntitySandwormPart
 		super(world);
 		this.head = this;
 		parts.add(this);
+	}
+
+	@Override
+	public IEntityLivingData onSpawnWithEgg(IEntityLivingData entityLivingData)
+	{
+		entityLivingData = super.onSpawnWithEgg(entityLivingData);
 		if(!worldObj.isRemote)
 			for(int i = 0; i < 8; i++)
 			{
@@ -23,12 +29,6 @@ public class EntitySandwormHead extends EntitySandwormPart
 				this.worldObj.spawnEntityInWorld(body);
 				parts.add(body);
 			}
-	}
-
-	@Override
-	public IEntityLivingData onSpawnWithEgg(IEntityLivingData entityLivingData)
-	{
-		entityLivingData = super.onSpawnWithEgg(entityLivingData);
 		return entityLivingData;
 
 	}
