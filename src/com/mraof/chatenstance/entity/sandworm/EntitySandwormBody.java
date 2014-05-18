@@ -1,6 +1,5 @@
 package com.mraof.chatenstance.entity.sandworm;
 
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.monster.IMob;
 import net.minecraft.nbt.NBTTagCompound;
@@ -42,12 +41,6 @@ public class EntitySandwormBody extends EntityLiving implements IMob
 		}
 	}
 	
-	@Override
-	public boolean isEntityEqual(Entity entity)
-	{
-		return this == entity || this.head == entity;
-	}
-
 	@Override
 	protected boolean canDespawn()
 	{

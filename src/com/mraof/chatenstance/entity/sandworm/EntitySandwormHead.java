@@ -98,7 +98,7 @@ public class EntitySandwormHead extends EntityCreature implements IMob
 			double diffX = part.posX - previousPart.posX;
 			double diffY = part.posY - previousPart.posY;
 			double diffZ = part.posZ - previousPart.posZ;
-			double ratio = part.width / Math.sqrt(diffX * diffX + diffY * diffY + diffZ * diffZ);
+			double ratio = (part.width / 2) / Math.sqrt(diffX * diffX + diffY * diffY + diffZ * diffZ);
 			
 			double destX = previousPart.posX + diffX * ratio;
 			double destY = previousPart.posY + diffY * ratio; 
@@ -106,7 +106,6 @@ public class EntitySandwormHead extends EntityCreature implements IMob
 			
 			if(this.worldObj.getBlock((int) destX, (int) destY, (int) destZ).isOpaqueCube())
 				destY = Math.floor(destY + 1);
-
 
 			part.setPositionAndRotation(destX, destY, destZ, (float) Math.atan2(diffX, diffZ), (float) Math.asin(diffY / Math.sqrt(diffX * diffX + diffZ * diffZ)));
 			previousPart = part;

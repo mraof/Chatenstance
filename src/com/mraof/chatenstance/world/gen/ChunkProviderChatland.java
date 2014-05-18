@@ -39,7 +39,8 @@ public class ChunkProviderChatland implements IChunkProvider
 	}
 
 	@Override
-	public boolean chunkExists(int chunkX, int chunkZ) {
+	public boolean chunkExists(int chunkX, int chunkZ) 
+	{
 		return true;
 	}
 
@@ -65,7 +66,8 @@ public class ChunkProviderChatland implements IChunkProvider
 	}
 
 	@Override
-	public Chunk loadChunk(int chunkX, int chunkZ) {
+	public Chunk loadChunk(int chunkX, int chunkZ) 
+	{
 		return this.provideChunk(chunkX, chunkZ);
 	}
 
