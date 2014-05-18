@@ -15,6 +15,7 @@ import net.minecraft.entity.monster.IMob;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.DamageSource;
+import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
 
 public class EntitySandwormHead extends EntityCreature implements IMob
@@ -148,4 +149,9 @@ public class EntitySandwormHead extends EntityCreature implements IMob
 		tagCompound.setFloat("Width", sizeSingle);
 	}
 
+	@Override
+	public boolean getCanSpawnHere()
+	{
+		return this.worldObj.difficultySetting != EnumDifficulty.PEACEFUL && super.getCanSpawnHere();
+	}
 }

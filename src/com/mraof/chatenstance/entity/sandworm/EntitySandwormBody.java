@@ -50,4 +50,5 @@ public class EntitySandwormBody extends EntityLiving implements IMob
 	{
 		setSize(width, width);
 	}
+
 }
