@@ -21,17 +21,19 @@ public class EntitySandwormHead extends EntityCreature implements IMob
 	public ArrayList<EntityLiving> parts = new ArrayList<EntityLiving>();
 	public EntityAIAttackOnCollide entityAIAttackOnCollide = new EntityAIAttackOnCollide(this, 0.8F, false);
 	int size;
+	public float sizeSingle = 2F;
 
 	public EntitySandwormHead(World world)
 	{
 		super(world);
-		this.setSize(2F, 2F);
+		this.setSize(sizeSingle, sizeSingle);
 		parts.add(this);
 		size = (new Random()).nextInt(8) + 7;
 		this.stepHeight = 1.0F;
 		for(int i = 1; i < size; i++)
 		{
 			EntitySandwormBody body = new EntitySandwormBody(this, i);
+			body.setSize(sizeSingle, sizeSingle);
 			world.spawnEntityInWorld(body);
 			parts.add(body);
 		}

@@ -20,6 +20,6 @@ public class ModelSandwormHead extends ModelBase {
 	@Override
 	public void render(Entity entity, float par2, float par3, float par4, float par5, float par6, float par7)
 	{
-		this.segment.render(par7);
+		this.segment.render(par7 * entity.width / 2.0F);
 	}
 }
