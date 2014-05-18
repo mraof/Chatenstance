@@ -28,9 +28,9 @@ public abstract class EntitySandwormPart extends EntityCreature
 	public void onEntityUpdate()
 	{
 		super.onEntityUpdate();
-		if(head == null)
+		if(head == null || head.isDead)
 		{
-			this.setDead();
+			//this.setDead();
 			return;
 		}
 		if(head.parts.size() > place + 1)
