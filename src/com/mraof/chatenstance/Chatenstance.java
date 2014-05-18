@@ -14,6 +14,7 @@ import com.mraof.chatenstance.chat.MagicWords;
 import com.mraof.chatenstance.chat.MobHate;
 import com.mraof.chatenstance.chat.PlantTalk;
 import com.mraof.chatenstance.client.ClientProxy;
+import com.mraof.chatenstance.client.renderer.entity.sandworm.EntitySandwormBody;
 import com.mraof.chatenstance.client.renderer.entity.sandworm.EntitySandwormHead;
 import com.mraof.chatenstance.entity.EntityMummy;
 import com.mraof.chatenstance.world.WorldProviderChatland;
@@ -131,6 +132,7 @@ public class Chatenstance
 			EntityRegistry.registerModEntity(EntityMummy.class, "Mummy", 0, this, 80, 3, true);
 			EntityList.addMapping(EntitySandwormHead.class, "Sandworm", 1801, 0xC5C690, 0xDEEDA0);
 			EntityRegistry.registerModEntity(EntitySandwormHead.class, "Sandworm", 1, this, 80, 3, true);
+			EntityRegistry.registerModEntity(EntitySandwormBody.class, "SandwormBody", 2, this, 80, 3, true);
 		}
 	}
 }
