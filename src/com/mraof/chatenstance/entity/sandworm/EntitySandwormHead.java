@@ -5,6 +5,10 @@ import java.util.ArrayList;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.EntityLiving;
+import net.minecraft.entity.ai.EntityAISwimming;
+import net.minecraft.entity.ai.EntityAIWander;
+import net.minecraft.entity.ai.EntityAIWatchClosest;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
 
 public class EntitySandwormHead extends EntityCreature
@@ -22,6 +26,9 @@ public class EntitySandwormHead extends EntityCreature
 			world.spawnEntityInWorld(body);
 			parts.add(body);
 		}
+		this.targetTasks.addTask(1, new EntityAISwimming(this));
+		this.tasks.addTask(5, new EntityAIWander(this, 0.3F));
+		this.tasks.addTask(6, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0F));
 	}
 
 	@Override
@@ -62,7 +69,7 @@ public class EntitySandwormHead extends EntityCreature
 			double diffY = part.posY - previousPart.posY;
 			double diffZ = part.posZ - previousPart.posZ;
 			double ratio = part.width / Math.sqrt(diffX * diffX + diffY * diffY + diffZ * diffZ);
-			part.setPosition(part.posX + diffX * ratio, part.posY + diffY * ratio, part.posZ + diffZ * ratio);
+			part.setPosition(previousPart.posX + diffX * ratio, previousPart.posY + diffY * ratio, previousPart.posZ + diffZ * ratio);
 			System.out.printf("%d: %.3f %.3f %.3f\n", i, part.posX, part.posY, part.posZ);
 			previousPart = part;
 		}
