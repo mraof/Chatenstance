@@ -35,23 +35,20 @@ public abstract class EntitySandwormPart extends EntityCreature
 
 	public void updatePartPosition() 
 	{
-		if(this.place > 0)
-		{
-			EntitySandwormPart part = head.parts.get(place - 1);
-			double diffX = this.posX - part.posX;
-			double diffY = this.posY - part.posY;
-			double diffZ = this.posZ - part.posZ;
-			double ratio = this.width / Math.sqrt(diffX * diffX + diffY * diffY + diffZ * diffZ);
-			this.posX = part.posX + diffX * ratio;
-			this.posY = part.posY + diffY * ratio;
-			this.posZ = part.posZ + diffZ * ratio;
-		}
-
 	}
 	@Override
 	public void setDead()
 	{
 		super.setDead();
-		System.out.println(place + " died");
+		System.out.println(place + " died (" + worldObj.isRemote + ")");
+		if(worldObj.isRemote)
+		{
+			try
+			{
+				Integer crash = null;
+				crash.byteValue();
+			} catch(Exception e)
+			{ e.printStackTrace(); }
+		}
 	}
 }
