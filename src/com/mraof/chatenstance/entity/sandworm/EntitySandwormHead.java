@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.EntityLiving;
+import net.minecraft.entity.ai.EntityAIHurtByTarget;
 import net.minecraft.entity.ai.EntityAISwimming;
 import net.minecraft.entity.ai.EntityAIWander;
 import net.minecraft.entity.ai.EntityAIWatchClosest;
@@ -26,7 +27,8 @@ public class EntitySandwormHead extends EntityCreature
 			world.spawnEntityInWorld(body);
 			parts.add(body);
 		}
-		this.targetTasks.addTask(1, new EntityAISwimming(this));
+		this.tasks.addTask(1, new EntityAISwimming(this));
+		this.targetTasks.addTask(1, new EntityAIHurtByTarget(this, false));
 		this.tasks.addTask(5, new EntityAIWander(this, 0.3F));
 		this.tasks.addTask(6, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0F));
 	}
