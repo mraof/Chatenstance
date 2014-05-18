@@ -10,11 +10,12 @@ import net.minecraft.entity.ai.EntityAIHurtByTarget;
 import net.minecraft.entity.ai.EntityAISwimming;
 import net.minecraft.entity.ai.EntityAIWander;
 import net.minecraft.entity.ai.EntityAIWatchClosest;
+import net.minecraft.entity.monster.IMob;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
 
-public class EntitySandwormHead extends EntityCreature
+public class EntitySandwormHead extends EntityCreature implements IMob
 {
 	public ArrayList<EntityLiving> parts = new ArrayList<EntityLiving>();
 	public EntityAIAttackOnCollide entityAIAttackOnCollide = new EntityAIAttackOnCollide(this, .4F, false);
@@ -99,8 +100,11 @@ public class EntitySandwormHead extends EntityCreature
 			double diffZ = part.posZ - previousPart.posZ;
 			double ratio = part.width / Math.sqrt(diffX * diffX + diffY * diffY + diffZ * diffZ);
 			
+			double destX = previousPart.posX + diffX * ratio;
+			double destY = previousPart.posY + diffY * ratio; 
+			double destZ = previousPart.posZ + diffZ * ratio;
 
-			part.setPositionAndRotation(previousPart.posX + diffX * ratio, previousPart.posY + diffY * ratio, previousPart.posZ + diffZ * ratio, (float) Math.atan2(diffX, diffZ), (float) Math.asin(diffY / Math.sqrt(diffX * diffX + diffZ * diffZ)));
+			part.setPositionAndRotation(destX, destY, destZ, (float) Math.atan2(diffX, diffZ), (float) Math.asin(diffY / Math.sqrt(diffX * diffX + diffZ * diffZ)));
 			previousPart = part;
 		}
 	}

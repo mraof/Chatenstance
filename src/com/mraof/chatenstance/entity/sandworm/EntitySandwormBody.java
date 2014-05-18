@@ -2,10 +2,11 @@ package com.mraof.chatenstance.entity.sandworm;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
+import net.minecraft.entity.monster.IMob;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
 
-public class EntitySandwormBody extends EntityLiving
+public class EntitySandwormBody extends EntityLiving implements IMob
 {
 	public EntitySandwormHead head;
 	

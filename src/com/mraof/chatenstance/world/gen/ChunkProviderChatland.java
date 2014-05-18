@@ -16,6 +16,7 @@ import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraft.world.gen.NoiseGeneratorOctaves;
 
 import com.mraof.chatenstance.entity.EntityMummy;
+import com.mraof.chatenstance.entity.sandworm.EntitySandwormHead;
 import com.mraof.chatenstance.world.gen.room.Room;
 
 public class ChunkProviderChatland implements IChunkProvider
@@ -33,6 +34,7 @@ public class ChunkProviderChatland implements IChunkProvider
 		rand = new Random(seed);
 		noiseGen0 = new NoiseGeneratorOctaves(rand, 4);
 		monsters.add(new SpawnListEntry(EntityMummy.class, 10, 1, 5));
+		monsters.add(new SpawnListEntry(EntitySandwormHead.class, 5, 1, 1));
 
 	}
 
