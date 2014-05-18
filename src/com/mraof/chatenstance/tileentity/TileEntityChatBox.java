@@ -14,7 +14,7 @@ public class TileEntityChatBox extends TileEntity
 	public Random rand = new Random();
 	public TileEntityChatBox()
 	{
-		message = "strike strike strike strike strike strike strike strike strike strike strike strike strike strike strike strike hate pig";
+		message = Chatenstance.defaultChatBoxPhrase;
 	}
 	
 	@Override

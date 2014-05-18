@@ -36,6 +36,7 @@ public class Chatenstance
 	public static boolean hasMobs;
 	@SidedProxy(clientSide="com.mraof.chatenstance.client.ClientProxy", serverSide="com.mraof.chatenstance.CommonProxy")
 	public static CommonProxy proxy;
+	public static String defaultChatBoxPhrase = "i hate slimes";
 
 	@EventHandler 
 	public void preInit(FMLPreInitializationEvent event)
@@ -112,9 +113,13 @@ public class Chatenstance
 		{
 			hasMobs = true;
 		}
+		if(config.get("Parts", "ChatBox", true).getBoolean(true))
+		{
+			defaultChatBoxPhrase = config.get("ChatBox", "Message", "i hate slimes").getString();
+			GameRegistry.registerBlock(new ChatBox(), "chatBox").setCreativeTab(CreativeTabs.tabDecorations);
+		}
 
 		config.save();
-		GameRegistry.registerBlock(new ChatBox(), "chatBox").setCreativeTab(CreativeTabs.tabDecorations);
 
 	}
 	@EventHandler

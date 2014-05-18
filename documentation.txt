@@ -1,0 +1,39 @@
+Chatenstance is a mod that causes things to happen based on what is said in
+the chat. It is made up of a few parts, with all the phrases or words related
+to triggering them able to be set in the config. All parts can be enabled or
+disabled in the config.
+
+LightningStrike:
+  Mentioning lightning in a sentence will cause a chance for lightning to
+strike nearby. This is currently not configurable beyond enabling or disabling
+it.
+
+MobHate:
+  Saying a mob name in a sentence along with the word hate will cause a chance
+for that mob to spawn nearby. The words that match the mobs names are stored
+in the config as a list for each, so both endermen and enderman will match
+enderman. 
+
+PlantTalk:
+  Talking near growable blocks will cause each to have a chance to grow,
+similar to how bonemeal works. This is not currently configurable beyond
+enabling or disabling it.
+
+MagicWords:
+  Saying certain phrases will cause a potion effect to be applied to the
+player. Which phrase matches each effect is configurable in the config file. 
+
+DimensionWords:
+  Saying a certain phrase will send the player to a new dimension, which is
+made mainly of sandstone and has an infinite system of underground rooms, as
+well as another phrase to send them back to the normal dimension. The id of
+the dimension and the provider are configurable, as well as the phrases to get
+there and back
+
+Mobs:
+  There are two mobs, mummies and sandworms, which spawn naturally in the new
+dimension. These can also be disabled, and should cause no issue if they are.
+
+ChatBox:
+  An item that says something that can trigger the parts that listen to the
+chat. The message it says is configurable in the config. 
