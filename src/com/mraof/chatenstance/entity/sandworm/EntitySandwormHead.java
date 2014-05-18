@@ -28,8 +28,7 @@ public class EntitySandwormHead extends EntityCreature
 	public void onEntityUpdate()
 	{
 		super.onEntityUpdate();
-		if((this.ticksExisted & 1) == 0)
-			this.updatePartPositions();
+		this.updatePartPositions();
 	}
 
 	@Override 
@@ -54,14 +53,16 @@ public class EntitySandwormHead extends EntityCreature
 
 	public void updatePartPositions()
 	{
-		for(int i = 0; i < parts.size(); i++)
+		EntityLiving previousPart = this;
+		for(int i = 1; i < parts.size(); i++)
 		{
 			EntityLiving part = parts.get(i);
-			double diffX = this.posX - part.posX;
-			double diffY = this.posY - part.posY;
-			double diffZ = this.posZ - part.posZ;
-			double ratio = this.width / Math.sqrt(diffX * diffX + diffY * diffY + diffZ * diffZ);
-			this.setPosition(part.posX + diffX * ratio, part.posY + diffY * ratio, part.posZ + diffZ * ratio);
+			double diffX = part.posX - previousPart.posX;
+			double diffY = part.posY - previousPart.posY;
+			double diffZ = part.posZ - previousPart.posZ;
+			double ratio = part.width / Math.sqrt(diffX * diffX + diffY * diffY + diffZ * diffZ);
+			part.setPosition(part.posX + diffX * ratio, part.posY + diffY * ratio, part.posZ + diffZ * ratio);
+			previousPart = part;
 		}
 	}
 
