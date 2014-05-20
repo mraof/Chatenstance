@@ -19,7 +19,7 @@ public class EntityMummy extends EntityZombie
 	{
 		super.applyEntityAttributes();
 		this.getEntityAttribute(field_110186_bp).setBaseValue(0.0D);
-		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0.8D);
+		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0.4D);
 		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(4.0D);
 	}
 

@@ -1,11 +1,13 @@
 package com.mraof.chatenstance.entity.sandworm;
 
+import io.netty.buffer.ByteBuf;
+import cpw.mods.fml.common.registry.IEntityAdditionalSpawnData;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.monster.IMob;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
 
-public class EntitySandwormBody extends EntityLiving implements IMob
+public class EntitySandwormBody extends EntityLiving implements IMob, IEntityAdditionalSpawnData
 {
 	public EntitySandwormHead head;
 	
@@ -23,10 +25,25 @@ public class EntitySandwormBody extends EntityLiving implements IMob
 	}
 
 	@Override
+	public void readFromNBT(NBTTagCompound tagCompound)
+	{
+		super.readFromNBT(tagCompound);
+		float sizeSingle = tagCompound.getFloat("Width");
+			if(this.head != null)
+				sizeSingle = head.width;
+			else
+				sizeSingle = 2F;
+		this.setSize(sizeSingle, sizeSingle);
+	}
+
+	@Override
 	public void writeEntityToNBT(NBTTagCompound tagCompound)
 	{
 		if(this.head != null)
+		{
 			super.writeEntityToNBT(tagCompound);
+			tagCompound.setFloat("Width", width);
+		}
 		else
 			this.setDead();
 	}
@@ -49,6 +66,19 @@ public class EntitySandwormBody extends EntityLiving implements IMob
 	public void setWidth(float width)
 	{
 		setSize(width, width);
+	}
+
+	@Override
+	public void writeSpawnData(ByteBuf buffer) 
+	{
+		buffer.writeFloat(this.width);
+
+	}
+
+	@Override
+	public void readSpawnData(ByteBuf additionalData) 
+	{
+		setWidth(additionalData.readFloat());
 	}
 
 }

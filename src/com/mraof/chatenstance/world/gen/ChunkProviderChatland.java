@@ -37,7 +37,7 @@ public class ChunkProviderChatland implements IChunkProvider
 		if(Chatenstance.hasMobs)
 		{
 			monsters.add(new SpawnListEntry(EntityMummy.class, 10, 1, 5));
-			monsters.add(new SpawnListEntry(EntitySandwormHead.class, 5, 1, 1));
+			monsters.add(new SpawnListEntry(EntitySandwormHead.class, 1, 1, 1));
 		}
 
 	}

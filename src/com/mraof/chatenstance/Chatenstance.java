@@ -33,6 +33,7 @@ public class Chatenstance
 	public static ChatParser chatParser;
 	public int chatDimensionId = 0;
 	private int chatProviderId;
+	public static int maxSandwormLength;
 	public static boolean hasMobs;
 	@SidedProxy(clientSide="com.mraof.chatenstance.client.ClientProxy", serverSide="com.mraof.chatenstance.CommonProxy")
 	public static CommonProxy proxy;
@@ -112,6 +113,7 @@ public class Chatenstance
 		if(config.get("Parts", "Mobs", true).getBoolean(true))
 		{
 			hasMobs = true;
+			maxSandwormLength = config.get("Mobs", "MaxSandwormLength", 25).getInt() - 7;
 		}
 		if(config.get("Parts", "ChatBox", true).getBoolean(true))
 		{
