@@ -1,11 +1,14 @@
 package com.mraof.chatenstance.entity.sandworm;
 
 import io.netty.buffer.ByteBuf;
-import cpw.mods.fml.common.registry.IEntityAdditionalSpawnData;
+
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.monster.IMob;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
+
+import cpw.mods.fml.common.registry.IEntityAdditionalSpawnData;
 
 public class EntitySandwormBody extends EntityLiving implements IMob, IEntityAdditionalSpawnData
 {
@@ -16,6 +19,13 @@ public class EntitySandwormBody extends EntityLiving implements IMob, IEntityAdd
 		super(world);
 		this.setSize(2F, 2F);
 	}
+
+	@Override
+	public boolean isAIEnabled()
+	{
+		return true;
+	}
+
 
 	public EntitySandwormBody(EntitySandwormHead entitySandwormHead, int place)
 	{
@@ -52,12 +62,12 @@ public class EntitySandwormBody extends EntityLiving implements IMob, IEntityAdd
 	public void onUpdate() 
 	{
 		super.onUpdate();
-		if(this.head == null || (this.head).isDead)
+		if(!this.worldObj.isRemote && (this.head == null || (this.head).isDead))
 		{
 			this.setDead();
 		}
 	}
-	
+
 	@Override
 	protected boolean canDespawn()
 	{
@@ -79,6 +89,21 @@ public class EntitySandwormBody extends EntityLiving implements IMob, IEntityAdd
 	public void readSpawnData(ByteBuf additionalData) 
 	{
 		setWidth(additionalData.readFloat());
+	}
+
+	@Override
+	public void collideWithEntity(Entity entity)
+	{
+		if(head == null || !head.parts.contains(entity))
+			super.collideWithEntity(entity);
+	}
+
+	@Override
+	public void setDead()
+	{
+		super.setDead();
+		if(head != null)
+			head.parts.remove(this);
 	}
 
 }

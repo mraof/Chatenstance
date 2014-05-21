@@ -15,10 +15,11 @@ import net.minecraft.entity.ai.EntityAIHurtByTarget;
 import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
 import net.minecraft.entity.ai.EntityAISwimming;
 import net.minecraft.entity.ai.EntityAIWander;
-import net.minecraft.entity.monster.EntityEnderman;
+import net.minecraft.entity.monster.EntitySilverfish;
 import net.minecraft.entity.monster.IMob;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.Vec3;
 import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
 
@@ -29,6 +30,7 @@ import cpw.mods.fml.common.registry.IEntityAdditionalSpawnData;
 public class EntitySandwormHead extends EntityCreature implements IMob, IEntityAdditionalSpawnData
 {
 	public ArrayList<EntityLiving> parts = new ArrayList<EntityLiving>();
+	public ArrayList<Integer> partIds = new ArrayList<Integer>();
 	public EntityAIAttackOnCollide entityAIAttackOnCollide = new EntityAIAttackOnCollide(this, 0.8F, false);
 	int size;
 	Random rand = new Random();
@@ -40,13 +42,13 @@ public class EntitySandwormHead extends EntityCreature implements IMob, IEntityA
 		parts.add(this);
 		size = rand.nextInt(Chatenstance.maxSandwormLength) + 7;
 		this.stepHeight = 1.0F;
-		
+
 		this.setWidth(sizeSingle);
 		this.tasks.addTask(1, new EntityAISwimming(this));
 		this.targetTasks.addTask(1, new EntityAIHurtByTarget(this, false));
-		this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityEnderman.class, 0, true));
+		this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntitySilverfish.class, 0, true));
 		this.tasks.addTask(5, new EntityAIWander(this, 0.6F));
-				
+
 		if (world != null && !world.isRemote)
 		{
 			this.setCombatTask();
@@ -67,7 +69,7 @@ public class EntitySandwormHead extends EntityCreature implements IMob, IEntityA
 		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(26F);
 		this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(80);
 	}
-	
+
 	@Override
 	public IEntityLivingData onSpawnWithEgg(IEntityLivingData data)
 	{
@@ -81,7 +83,7 @@ public class EntitySandwormHead extends EntityCreature implements IMob, IEntityA
 		super.onEntityUpdate();
 		this.updatePartPositions();
 	}
-	
+
 	@Override
 	public boolean attackEntityAsMob(Entity entity)
 	{
@@ -105,10 +107,10 @@ public class EntitySandwormHead extends EntityCreature implements IMob, IEntityA
 	@Override
 	public void collideWithEntity(Entity entity)
 	{
-		if(!parts.get(1).equals(entity))
+		if(!parts.contains(entity))
 			super.collideWithEntity(entity);
 	}
-	
+
 	@Override
 	public boolean attackEntityFrom(DamageSource source, float damage)
 	{
@@ -117,33 +119,41 @@ public class EntitySandwormHead extends EntityCreature implements IMob, IEntityA
 		return super.attackEntityFrom(source, damage);
 	}
 
-	@Override
-	public void setPositionAndRotation(double x, double y, double z, float yaw, float pitch)
-	{
-		super.setPositionAndRotation(x, y, z, yaw, pitch);
-		this.updatePartPositions();
-	}
-
 	public void updatePartPositions()
 	{
 		EntityLiving previousPart = this;
 		for(int i = 1; i < parts.size(); i++)
 		{
 			EntityLiving part = parts.get(i);
+			//System.out.printf("%d: %.3f %.3f %.3f", i, part.posX, part.posY, part.posZ);
 			double diffX = part.posX - previousPart.posX;
 			double diffY = part.posY - previousPart.posY;
 			double diffZ = part.posZ - previousPart.posZ;
-			double ratio = (part.width * .75) / Math.sqrt(diffX * diffX + diffY * diffY + diffZ * diffZ);
-			
+			double distance = Math.sqrt(diffX * diffX + diffY * diffY + diffZ * diffZ);
+			double ratio = distance != 0 ? (part.width * .75) / distance : 1;
+
 			double destX = previousPart.posX + diffX * ratio;
 			double destY = previousPart.posY + diffY * ratio; 
 			double destZ = previousPart.posZ + diffZ * ratio;
-			
+
 			if(diffY < this.width && this.worldObj.getBlock((int) destX, (int) destY, (int) destZ).getMaterial().isSolid())
 				destY = Math.floor(destY + 1);
 
-			part.setPositionAndRotation(destX, destY, destZ, (float) Math.atan2(diffX, diffZ), (float) Math.asin(diffY / Math.sqrt(diffX * diffX + diffZ * diffZ)));
+			part.setLocationAndAngles(destX, destY, destZ, (float) Math.atan2(diffX, diffZ), (float) Math.asin(diffY / Math.sqrt(diffX * diffX + diffZ * diffZ)));
+			//System.out.printf(" > %.3f %.3f %.3f\n", destX, destY, destZ);
 			previousPart = part;
+		}
+		if(worldObj.isRemote)
+		{
+
+			for(int i = 0; i < partIds.size(); i++)
+			{
+				EntityLiving part = (EntityLiving) this.worldObj.getEntityByID(partIds.get(i));
+				if(part != null)
+					parts.add(part);
+				else
+					System.out.println("Recieved id for null entity for part number " + i);
+			}
 		}
 	}
 
@@ -160,7 +170,7 @@ public class EntitySandwormHead extends EntityCreature implements IMob, IEntityA
 	{
 		super.writeToNBT(tagCompound);
 		tagCompound.setFloat("Width", this.width);
-		tagCompound.setInteger("Length", this.size);
+		tagCompound.setInteger("Length", this.parts.size() - 1);
 	}
 
 	@Override
@@ -168,7 +178,7 @@ public class EntitySandwormHead extends EntityCreature implements IMob, IEntityA
 	{
 		return this.worldObj.difficultySetting != EnumDifficulty.PEACEFUL && super.getCanSpawnHere() && rand.nextInt(16) == 0;
 	}
-	
+
 	public void setWidth(float width)
 	{
 		this.setSize(width, width);
@@ -180,18 +190,22 @@ public class EntitySandwormHead extends EntityCreature implements IMob, IEntityA
 	public void setLength(int size)
 	{
 		this.size = size;
-		for(int i = 1; i < parts.size(); i++)
-			parts.get(i).setDead();
-		for(int i = 1; i < size; i++)
+		if(!this.worldObj.isRemote)
 		{
-			EntitySandwormBody body = new EntitySandwormBody(this, i);
-			body.setPosition(this.posX, this.posY, this.posZ);
-			worldObj.spawnEntityInWorld(body);
-			parts.add(body);
+			for(; parts.size() > 1; parts.remove(1))
+				parts.get(1).setDead();
+			for(int i = 1; i < size; i++)
+			{
+				EntitySandwormBody body = new EntitySandwormBody(this, i);
+				body.setPosition(this.posX + i * size, this.posY, this.posZ);
+				body.setWidth(this.width);
+				worldObj.spawnEntityInWorld(body);
+				parts.add(body);
+			}
+			this.setWidth(this.width);
+			this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(this.width * this.size);
+			this.setHealth(this.getMaxHealth());
 		}
-		this.setWidth(this.width);
-		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(this.width * this.size);
-		this.setHealth(this.getMaxHealth());
 	}
 
 	@Override
@@ -214,5 +228,24 @@ public class EntitySandwormHead extends EntityCreature implements IMob, IEntityA
 		if(deathTime == 1)
 			for(int i = 1; i < parts.size(); i++)
 				parts.get(i).setHealth(0);
+	}
+
+	public Vec3 getPointFacing()
+	{
+		if(parts.size() > 0)
+		{
+			double diffX = parts.get(1).posX - this.posX;
+			double diffY = parts.get(1).posY - this.posY;
+			double diffZ = parts.get(1).posZ - this.posZ;
+			double ratio = (this.width * .75) / Math.sqrt(diffX * diffX + diffY * diffY + diffZ * diffZ);
+
+			double destX = this.posX - diffX * ratio;
+			double destY = this.posY - diffY * ratio; 
+			double destZ = this.posZ - diffZ * ratio;
+			return Vec3.createVectorHelper(destX, destY, destZ);
+		}
+		else
+			return Vec3.createVectorHelper(this.posX, this.posY, this.posZ);
+
 	}
 }
