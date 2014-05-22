@@ -18,10 +18,13 @@ import net.minecraft.entity.ai.EntityAIWander;
 import net.minecraft.entity.monster.EntitySilverfish;
 import net.minecraft.entity.monster.IMob;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.potion.Potion;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.MathHelper;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
+import net.minecraftforge.common.ForgeHooks;
 
 import com.mraof.chatenstance.Chatenstance;
 
@@ -38,7 +41,7 @@ public class EntitySandwormHead extends EntityCreature implements IMob, IEntityA
 	public EntitySandwormHead(World world)
 	{
 		super(world);
-		float sizeSingle = rand.nextFloat() * 4 + 1;
+		float sizeSingle = rand.nextFloat() * rand.nextFloat() * 9 + .3F;
 		parts.add(this);
 		size = rand.nextInt(Chatenstance.maxSandwormLength) + 7;
 		this.stepHeight = 1.0F;
@@ -87,7 +90,7 @@ public class EntitySandwormHead extends EntityCreature implements IMob, IEntityA
 	@Override
 	public boolean attackEntityAsMob(Entity entity)
 	{
-		return entity.attackEntityFrom(DamageSource.causeMobDamage(this), 6);
+		return entity.attackEntityFrom(DamageSource.causeMobDamage(this), 1 + this.width * 2);
 	}
 
 	protected void setCombatTask()
@@ -114,13 +117,21 @@ public class EntitySandwormHead extends EntityCreature implements IMob, IEntityA
 	@Override
 	public boolean attackEntityFrom(DamageSource source, float damage)
 	{
+		if(source == DamageSource.fall)
+		{
+			damage /= this.size * this.width;
+			if(damage < 1)
+				return false;
+		}
 		for(int i = 1; i < parts.size(); i++)
-			parts.get(i).attackEntityFrom(source, damage);
+			((EntitySandwormBody)parts.get(i)).attackEntityFromHead(source, damage / 2);
 		return super.attackEntityFrom(source, damage);
 	}
 
 	public void updatePartPositions()
 	{
+		//if(this.worldObj.isRemote)
+			//System.out.printf("Updating part positions on client, %d parts total", this.parts.size());
 		EntityLiving previousPart = this;
 		for(int i = 1; i < parts.size(); i++)
 		{
@@ -139,21 +150,9 @@ public class EntitySandwormHead extends EntityCreature implements IMob, IEntityA
 			if(diffY < this.width && this.worldObj.getBlock((int) destX, (int) destY, (int) destZ).getMaterial().isSolid())
 				destY = Math.floor(destY + 1);
 
-			part.setLocationAndAngles(destX, destY, destZ, (float) Math.atan2(diffX, diffZ), (float) Math.asin(diffY / Math.sqrt(diffX * diffX + diffZ * diffZ)));
+			part.setPositionAndRotation(destX, destY, destZ, (float) Math.atan2(diffX, diffZ), (float) Math.asin(diffY / Math.sqrt(diffX * diffX + diffZ * diffZ)));
 			//System.out.printf(" > %.3f %.3f %.3f\n", destX, destY, destZ);
 			previousPart = part;
-		}
-		if(worldObj.isRemote)
-		{
-
-			for(int i = 0; i < partIds.size(); i++)
-			{
-				EntityLiving part = (EntityLiving) this.worldObj.getEntityByID(partIds.get(i));
-				if(part != null)
-					parts.add(part);
-				else
-					System.out.println("Recieved id for null entity for part number " + i);
-			}
 		}
 	}
 
@@ -163,6 +162,7 @@ public class EntitySandwormHead extends EntityCreature implements IMob, IEntityA
 		super.readFromNBT(tagCompound);
 		this.setWidth(tagCompound.getFloat("Width"));
 		this.setLength(tagCompound.getInteger("Length"));
+		System.out.println(tagCompound.getInteger("Length"));
 	}
 
 	@Override
@@ -182,6 +182,7 @@ public class EntitySandwormHead extends EntityCreature implements IMob, IEntityA
 	public void setWidth(float width)
 	{
 		this.setSize(width, width);
+		this.experienceValue = (int)(width * 10);
 		this.stepHeight = width / 2;
 		for(int i = 1; i < parts.size(); i++)
 			((EntitySandwormBody)parts.get(i)).setWidth(width);
@@ -197,15 +198,44 @@ public class EntitySandwormHead extends EntityCreature implements IMob, IEntityA
 			for(int i = 1; i < size; i++)
 			{
 				EntitySandwormBody body = new EntitySandwormBody(this, i);
-				body.setPosition(this.posX + i * size, this.posY, this.posZ);
+				body.setPosition(this.posX + i * this.width, this.posY, this.posZ);
 				body.setWidth(this.width);
+				body.setMaxHealth(this.width * this.size * 2);
+				body.setHealth(body.getMaxHealth());
 				worldObj.spawnEntityInWorld(body);
 				parts.add(body);
 			}
 			this.setWidth(this.width);
-			this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(this.width * this.size);
+			this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(this.width * this.size * 2);
 			this.setHealth(this.getMaxHealth());
 		}
+	}
+
+	@Override
+	public float getShadowSize()
+	{
+		return this.width / 2;
+	}
+
+	@Override
+	protected void jump()
+	{
+		this.motionY = (this.width + .8) * 0.41999998688697815D;
+
+		if (this.isPotionActive(Potion.jump))
+		{
+			this.motionY += (double)((float)(this.getActivePotionEffect(Potion.jump).getAmplifier() + 1) * 0.1F);
+		}
+
+		if (this.isSprinting())
+		{
+			float f = this.rotationYaw * 0.017453292F;
+			this.motionX -= (double)(MathHelper.sin(f) * 0.2F);
+			this.motionZ += (double)(MathHelper.cos(f) * 0.2F);
+		}
+
+		this.isAirBorne = true;
+		ForgeHooks.onLivingJump(this);
 	}
 
 	@Override

@@ -2,6 +2,8 @@ package com.mraof.chatenstance;
 
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityList;
+import net.minecraft.entity.EnumCreatureType;
+import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraftforge.common.DimensionManager;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.config.Configuration;
@@ -144,6 +146,7 @@ public class Chatenstance
 			EntityList.addMapping(EntitySandwormHead.class, "Sandworm", 1801, 0xC5C690, 0xDEEDA0);
 			EntityRegistry.registerModEntity(EntitySandwormHead.class, "Sandworm", 1, this, 80, 3, true);
 			EntityRegistry.registerModEntity(EntitySandwormBody.class, "SandwormBody", 2, this, 80, 3, true);
+			EntityRegistry.addSpawn(EntitySandwormHead.class, 1, 1, 2, EnumCreatureType.creature,  BiomeGenBase.desert, BiomeGenBase.plains, BiomeGenBase.mesa, BiomeGenBase.mesaPlateau, BiomeGenBase.mesaPlateau_F, BiomeGenBase.desertHills);
 		}
 	}
 }
