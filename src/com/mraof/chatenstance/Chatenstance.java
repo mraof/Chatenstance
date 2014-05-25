@@ -29,12 +29,13 @@ import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.registry.EntityRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 
-@Mod(modid = "Chatenstance", name = "Chatenstance", version = "@VERSION@")
+@Mod(modid = "Chatenstance", name = "Chatenstance", version = "@VERSION@", acceptableRemoteVersions="*")
 public class Chatenstance
 {
 	public static ChatParser chatParser;
 	public int chatDimensionId = 0;
 	private int chatProviderId;
+	private boolean spawnInOverworld = false;
 	public static int maxSandwormLength;
 	public static boolean hasMobs;
 	@SidedProxy(clientSide="com.mraof.chatenstance.client.ClientProxy", serverSide="com.mraof.chatenstance.CommonProxy")
@@ -116,6 +117,7 @@ public class Chatenstance
 		{
 			hasMobs = true;
 			maxSandwormLength = config.get("Mobs", "MaxSandwormLength", 25).getInt() - 7;
+			spawnInOverworld = config.get("Mobs", "SpawnInOverworld", true).getBoolean(true);
 		}
 		if(config.get("Parts", "ChatBox", true).getBoolean(true))
 		{
@@ -146,7 +148,8 @@ public class Chatenstance
 			EntityList.addMapping(EntitySandwormHead.class, "Sandworm", 1801, 0xC5C690, 0xDEEDA0);
 			EntityRegistry.registerModEntity(EntitySandwormHead.class, "Sandworm", 1, this, 80, 3, true);
 			EntityRegistry.registerModEntity(EntitySandwormBody.class, "SandwormBody", 2, this, 80, 3, true);
-			EntityRegistry.addSpawn(EntitySandwormHead.class, 1, 1, 2, EnumCreatureType.creature,  BiomeGenBase.desert, BiomeGenBase.plains, BiomeGenBase.mesa, BiomeGenBase.mesaPlateau, BiomeGenBase.mesaPlateau_F, BiomeGenBase.desertHills);
+			if(spawnInOverworld)
+				EntityRegistry.addSpawn(EntitySandwormHead.class, 1, 1, 2, EnumCreatureType.creature,  BiomeGenBase.desert, BiomeGenBase.plains, BiomeGenBase.mesa, BiomeGenBase.mesaPlateau, BiomeGenBase.mesaPlateau_F, BiomeGenBase.desertHills);
 		}
 	}
 }

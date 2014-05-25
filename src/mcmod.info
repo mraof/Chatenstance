@@ -13,6 +13,6 @@
 		"dependencies": [
 			"Forge"
 			], 
-		"description": "Makes things happen based on theh chat"
+		"description": "Makes things happen based on the chat"
 }
 ]

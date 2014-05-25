@@ -188,7 +188,7 @@ public class EntitySandwormBody extends EntityLiving implements IMob, IEntityAdd
 	@Override
 	public boolean attackEntityFrom(DamageSource source, float damage)
 	{
-		if(source != DamageSource.fall && source != DamageSource.inWall)
+		if(source != DamageSource.fall && source != DamageSource.inWall && source != DamageSource.drown)
 		{
 			if(head != null)
 			{
