@@ -29,7 +29,7 @@ import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.registry.EntityRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 
-@Mod(modid = "Chatenstance", name = "Chatenstance", version = "@VERSION@", acceptableRemoteVersions="*")
+@Mod(modid = "Chatenstance", name = "Chatenstance", acceptableRemoteVersions="*")
 public class Chatenstance
 {
 	public static ChatParser chatParser;

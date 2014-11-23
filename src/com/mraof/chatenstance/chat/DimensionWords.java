@@ -1,12 +1,9 @@
 package com.mraof.chatenstance.chat;
 
-import java.util.Iterator;
-
 import net.minecraft.entity.player.EntityPlayerMP;
-import net.minecraft.network.play.server.S07PacketRespawn;
-import net.minecraft.network.play.server.S1DPacketEntityEffect;
-import net.minecraft.potion.PotionEffect;
-import net.minecraft.world.WorldServer;
+import net.minecraft.server.MinecraftServer;
+
+import com.mraof.chatenstance.util.ChatenstanceTeleporter;
 
 public class DimensionWords extends ChatHandler
 {
@@ -32,7 +29,8 @@ public class DimensionWords extends ChatHandler
 
 	public void teleport(EntityPlayerMP player, int dimension)
 	{
-		System.out.println("Teleporting player from " +  player.dimension + " to " + dimension);
+		MinecraftServer.getServer().getConfigurationManager().transferPlayerToDimension(player, dimension, new ChatenstanceTeleporter(MinecraftServer.getServer().worldServerForDimension(dimension)));
+		/*System.out.println("Teleporting player from " +  player.dimension + " to " + dimension);
 		int currentDimension = player.dimension;
 		WorldServer currentWorldServer = player.mcServer.worldServerForDimension(currentDimension);
 		player.dimension = dimension;
@@ -64,6 +62,6 @@ public class DimensionWords extends ChatHandler
 		{
 			PotionEffect potionEffect = (PotionEffect) iterator.next();
 			player.playerNetServerHandler.sendPacket(new S1DPacketEntityEffect(player.getEntityId(), potionEffect));
-		}
+		}*/
 	}
 }

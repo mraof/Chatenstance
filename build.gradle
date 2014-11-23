@@ -22,11 +22,8 @@ group= "com.mraof.chatenstance"
 archivesBaseName = "Chatenstance"
 
 minecraft {
-    version = "1.7.2-10.12.1.1082"
+    version = "1.7.10-10.13.2.1230"
     assetDir = "eclipse/assets"
-
-    replaceIn "com/mraof/chatenstance,Chatenstance.java"
-    replace "@VERSION@", project.version
 }
 sourceSets {
     main {

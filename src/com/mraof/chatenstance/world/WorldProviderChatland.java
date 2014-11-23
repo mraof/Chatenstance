@@ -36,7 +36,7 @@ public class WorldProviderChatland extends WorldProvider
 	@Override
 	public Vec3 getFogColor(float par1, float par2)
 	{
-		return this.worldObj.getWorldVec3Pool().getVecFromPool(0,.5D,.5D);
+		return Vec3.createVectorHelper(0,.5D,.5D);	
 	}
 
 	@Override
